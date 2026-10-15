@@ -12,16 +12,40 @@
     "jebat": "https://jebat.online"
   },
   "summary": [
-    "I started in the server room. Ten-plus years ago it was AIX boxes, Cisco switches and VLANs at IBM Malaysia — 50+ servers, 99.9% uptime, and the particular humility that comes from being on call when a box stops answering. Then a co-founded e-commerce business doing RM 500K a year, where the same discipline met marketing budgets and 4:1 ad ROI.",
-    "Now I build AI systems — and I still operate the infrastructure underneath them. That's the part most AI work skips. When you've spent a decade accountable for uptime, you build differently: you think about blast radius, rollback strategy, and why an approval gate exists before the automation does something you cannot undo."
+    "I started in the server room. Ten-plus years ago that was AIX boxes, Cisco switches and VLANs at IBM Malaysia: 50+ servers, 99.9% uptime, and the humility that comes from being on call when a box stops answering. Then a co-founded e-commerce business doing RM 500K a year, where the same discipline met marketing budgets and 4:1 ad ROI.",
+    "Now I build AI systems and still operate the infrastructure underneath them. That is the part most AI work skips. A decade accountable for uptime changes how you build: you think about blast radius, rollback strategy, and why an approval gate exists before the automation does something you cannot undo."
   ],
   "stats": [
-    { "value": "19", "label": "agents in production", "detail": "JEBAT CENTRIX — specialist fleet behind one interface" },
-    { "value": "99.9%", "label": "uptime held at IBM", "detail": "50+ AIX/P-Series servers, proactive CLI and HMC maintenance" },
-    { "value": "RM 500K+", "label": "annual e-commerce revenue", "detail": "Einaq Baby Carrier, to RM 500K/yr in two years at 4:1 ad ROI" },
-    { "value": "50+", "label": "VLANs at Fortune 500 SLA", "detail": "IBM resident engineer, multi-tiered Cisco networks" },
-    { "value": "10+", "label": "years in production systems", "detail": "helpdesk → server room → agent systems" },
-    { "value": "3", "label": "certifications held", "detail": "CEH, AI Enterprise Lead Implementor, GenBIZ AI Professional" }
+    {
+      "value": "19",
+      "label": "agents in production",
+      "detail": "JEBAT CENTRIX — specialist fleet behind one interface"
+    },
+    {
+      "value": "99.9%",
+      "label": "uptime held at IBM",
+      "detail": "50+ AIX/P-Series servers, proactive CLI and HMC maintenance"
+    },
+    {
+      "value": "RM 500K+",
+      "label": "annual e-commerce revenue",
+      "detail": "Einaq Baby Carrier, to RM 500K/yr in two years at 4:1 ad ROI"
+    },
+    {
+      "value": "50+",
+      "label": "VLANs at Fortune 500 SLA",
+      "detail": "IBM resident engineer, multi-tiered Cisco networks"
+    },
+    {
+      "value": "10+",
+      "label": "years in production systems",
+      "detail": "helpdesk → server room → agent systems"
+    },
+    {
+      "value": "3",
+      "label": "certifications held",
+      "detail": "CEH, AI Enterprise Lead Implementor, GenBIZ AI Professional"
+    }
   ],
   "capabilities": [
     {
@@ -46,7 +70,15 @@
       "name": "JEBAT CENTRIX",
       "kind": "19-agent AI operations fleet",
       "year": "2026",
-      "stack": ["Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL", "Docker", "Telegram API"],
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Python",
+        "PostgreSQL",
+        "Docker",
+        "Telegram API"
+      ],
       "problem": "Inbound enquiries needed triage, quoting, and assignment across a team, done manually and inconsistently.",
       "approach": "Nineteen specialists behind one natural-language front door rather than one general assistant. Each agent has a scope, so a mis-route is visible instead of silently wrong. Rejected a single mega-prompt — it had no way to express \"this question is outside what I know.\"",
       "shipped": "Live. Natural-language routing, parallel fan-out across independent workstreams, weighted dispatch, per-call cost and usage instrumentation, and mandatory approval on anything outbound or destructive.",
@@ -56,7 +88,12 @@
       "name": "WhatsApp sales desk",
       "kind": "Inbound → quotation → dispatch",
       "year": "2026",
-      "stack": ["WhatsApp Cloud API", "Python", "PostgreSQL", "Groq"],
+      "stack": [
+        "WhatsApp Cloud API",
+        "Python",
+        "PostgreSQL",
+        "Groq"
+      ],
       "problem": "Enquiries arrived by WhatsApp with no consistent triage, and quotations lived in someone's head.",
       "approach": "Inbound → intent, entity and urgency triage → auto-drafted quotation written into a live ledger → weighted round-robin dispatch. Two decisions worth defending: triage is model-assisted but has a deterministic rule fallback, so it degrades instead of failing; and replies are recorded before delivery is attempted, so a gateway outage can never destroy an operator's work.",
       "shipped": "Live with approval gating. Transport is pluggable — official Cloud API or a self-hosted gateway — behind one interface, so the channel can change without touching business logic.",
@@ -66,7 +103,13 @@
       "name": "Search-readiness engine",
       "kind": "SEO / GEO scoring platform",
       "year": "2026",
-      "stack": ["Next.js App Router", "TypeScript", "Node.js", "Traefik", "systemd"],
+      "stack": [
+        "Next.js App Router",
+        "TypeScript",
+        "Node.js",
+        "Traefik",
+        "systemd"
+      ],
       "problem": "Clients had no defensible way to know whether their site would survive an AI-answer-engine world, and no route from a diagnosis to paid work.",
       "approach": "Score a site across ten dimensions — technical SEO, E-E-A-T signals, AI-answer-engine readiness, structured data, programmatic SEO — then turn the score into a priced, phased scope routed to the agent that owns each workstream. Free scan in, priced scope out.",
       "shipped": "1,200+ line engine, live. Drove one client's E-E-A-T score 66 → 100, AI-SEO 90 → 100, GEO 31 → 80, overall 87 → 98.",
@@ -76,7 +119,12 @@
       "name": "Einaq Baby Carrier",
       "kind": "Co-founded e-commerce platform",
       "year": "2017 – 2024",
-      "stack": ["WooCommerce", "WordPress", "AWS EC2", "Google Data Studio"],
+      "stack": [
+        "WooCommerce",
+        "WordPress",
+        "AWS EC2",
+        "Google Data Studio"
+      ],
       "problem": "A physical product business with no digital channel and a marketing budget that had to justify itself monthly.",
       "approach": "Built and ran the whole platform: storefront, payments, production workflow, paid acquisition, and the reporting that told us which of those were working.",
       "shipped": "RM 500K+ annual revenue within two years, 4:1 ad ROI, 80% of sales through digital marketing, 25% material waste reduction and RM 50K annual cost cuts from workflow changes.",
@@ -196,31 +244,103 @@
   "skills": [
     {
       "group": "AI & agents",
-      "items": ["Multi-agent orchestration", "Agent delegation and parallel fan-out", "LLMs and LLM routing with failover", "GenAI integration", "AI-driven business optimisation", "Prompt and evaluation design", "Structured outputs", "Human-in-the-loop approval gates"]
+      "items": [
+        "Multi-agent orchestration",
+        "Agent delegation and parallel fan-out",
+        "LLMs and LLM routing with failover",
+        "GenAI integration",
+        "AI-driven business optimisation",
+        "Prompt and evaluation design",
+        "Structured outputs",
+        "Human-in-the-loop approval gates"
+      ]
     },
     {
       "group": "Languages & web",
-      "items": ["TypeScript", "JavaScript", "Node.js", "Python", "React", "Next.js (App Router, standalone output)", "REST API design", "HTML", "CSS", "Vue"]
+      "items": [
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "Python",
+        "React",
+        "Next.js (App Router, standalone output)",
+        "REST API design",
+        "HTML",
+        "CSS",
+        "Vue"
+      ]
     },
     {
       "group": "Infrastructure & cloud",
-      "items": ["System administration", "Server management", "CloudOps", "AWS EC2", "VMware", "Linux", "AIX", "Windows Server", "HMC", "CLI", "Shell scripting", "PowerShell", "ServiceNow"]
+      "items": [
+        "System administration",
+        "Server management",
+        "CloudOps",
+        "AWS EC2",
+        "VMware",
+        "Linux",
+        "AIX",
+        "Windows Server",
+        "HMC",
+        "CLI",
+        "Shell scripting",
+        "PowerShell",
+        "ServiceNow"
+      ]
     },
     {
       "group": "Networking & security",
-      "items": ["Cisco networks", "VLANs", "TCP/IP", "Active Directory", "VPN", "Vulnerability assessment", "Penetration testing", "Wazuh SIEM", "OSSEC", "WAF (OWASP Top 10)", "SPF/DKIM/DMARC", "SLA management", "Root cause analysis"]
+      "items": [
+        "Cisco networks",
+        "VLANs",
+        "TCP/IP",
+        "Active Directory",
+        "VPN",
+        "Vulnerability assessment",
+        "Penetration testing",
+        "Wazuh SIEM",
+        "OSSEC",
+        "WAF (OWASP Top 10)",
+        "SPF/DKIM/DMARC",
+        "SLA management",
+        "Root cause analysis"
+      ]
     },
     {
       "group": "Databases",
-      "items": ["SQL", "Database migration", "Data analytics", "PostgreSQL"]
+      "items": [
+        "SQL",
+        "Database migration",
+        "Data analytics",
+        "PostgreSQL"
+      ]
     },
     {
       "group": "Search & growth",
-      "items": ["Technical SEO", "E-E-A-T", "AI-answer-engine readiness (GEO/AEO)", "schema.org / JSON-LD", "Programmatic SEO", "Core Web Vitals", "WordPress", "WooCommerce", "Google Ads", "Facebook Ads", "Sales funnels", "Google Data Studio"]
+      "items": [
+        "Technical SEO",
+        "E-E-A-T",
+        "AI-answer-engine readiness (GEO/AEO)",
+        "schema.org / JSON-LD",
+        "Programmatic SEO",
+        "Core Web Vitals",
+        "WordPress",
+        "WooCommerce",
+        "Google Ads",
+        "Facebook Ads",
+        "Sales funnels",
+        "Google Data Studio"
+      ]
     },
     {
       "group": "Platform",
-      "items": ["Docker", "PM2", "Traefik", "systemd", "Canary deployment with automated rollback"]
+      "items": [
+        "Docker",
+        "PM2",
+        "Traefik",
+        "systemd",
+        "Canary deployment with automated rollback"
+      ]
     }
   ],
   "education": [
@@ -241,7 +361,10 @@
     "Certified Lead Implementor for AI Enterprise",
     "GenBIZ AI Certified Professional"
   ],
-  "languages": ["English (professional)", "Bahasa Malaysia (native)"],
+  "languages": [
+    "English (professional)",
+    "Bahasa Malaysia (native)"
+  ],
   "company": {
     "name": "NusaByte IT Solutions",
     "registration": "SSM 202603010679",
@@ -252,192 +375,357 @@
     "headline": "One client site, one audit cycle, four dimensions moved.",
     "note": "Measured by the search-readiness engine before and after the fixes. The numbers are the engine's own output, not an estimate.",
     "rows": [
-      { "metric": "E-E-A-T", "before": 66, "after": 100, "why": "Author byline, bio, and OWASP citation on the claim that actually comes from OWASP" },
-      { "metric": "AI-SEO", "before": 90, "after": 100, "why": "Structured data completed across every indexable surface" },
-      { "metric": "GEO / AEO", "before": 31, "after": 80, "why": "Answer-engine readiness: direct answers, entity clarity, machine-readable schema" },
-      { "metric": "Overall", "before": 87, "after": 98, "why": "Roll-up across all ten scored dimensions" }
+      {
+        "metric": "E-E-A-T",
+        "before": 66,
+        "after": 100,
+        "why": "Author byline, bio, and OWASP citation on the claim that actually comes from OWASP"
+      },
+      {
+        "metric": "AI-SEO",
+        "before": 90,
+        "after": 100,
+        "why": "Structured data completed across every indexable surface"
+      },
+      {
+        "metric": "GEO / AEO",
+        "before": 31,
+        "after": 80,
+        "why": "Answer-engine readiness: direct answers, entity clarity, machine-readable schema"
+      },
+      {
+        "metric": "Overall",
+        "before": 87,
+        "after": 98,
+        "why": "Roll-up across all ten scored dimensions"
+      }
     ]
   },
   "projects": [
     {
       "name": "JEBAT CENTRIX",
-      "blurb": "19 specialist agents behind one interface. Natural-language routing, parallel fan-out, weighted dispatch, mandatory approval on anything outbound or destructive. Multi-provider LLM routing with automatic failover.",
+      "blurb": "Nineteen specialist agents behind one interface. Natural-language routing to named specialists, parallel fan-out across independent workstreams, and mandatory approval on anything outbound or destructive. Multi-provider LLM routing with automatic failover.",
       "domain": "AI",
-      "stack": ["Python", "FastAPI", "PostgreSQL", "Redis", "WebSockets", "MCP", "Docker"],
+      "stack": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "WebSockets",
+        "MCP",
+        "Docker"
+      ],
       "state": "Live",
       "year": "2026",
-      "flag": true
+      "flag": true,
+      "shot": "shots/jebat-online-hero.jpg"
     },
     {
       "name": "WhatsApp sales desk",
-      "blurb": "Inbound message → intent and urgency triage → auto-drafted quotation into a live ledger → weighted dispatch. Deterministic fallback when the model degrades; replies recorded before delivery so a gateway outage cannot lose an operator's work.",
+      "blurb": "Inbound message to intent and urgency triage to an auto-drafted quotation in a live ledger to weighted dispatch. Triage is model-assisted with a deterministic fallback, so it degrades instead of failing. Replies are recorded before delivery, so a gateway outage cannot lose an operator's message.",
       "domain": "AI",
-      "stack": ["Python", "FastAPI", "PostgreSQL (RLS)", "Groq", "Docker"],
+      "stack": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL (RLS)",
+        "Groq",
+        "Docker"
+      ],
       "state": "Live",
       "year": "2026",
-      "flag": true
+      "flag": true,
+      "shot": null
     },
     {
       "name": "Search-readiness engine",
-      "blurb": "1,200+ lines scoring a site across ten dimensions — technical SEO, E-E-A-T, AI-answer-engine readiness, structured data, programmatic SEO. Free scan → priced, phased scope → routed to the owning agent.",
+      "blurb": "Scores a site across ten dimensions: technical SEO, E-E-A-T, AI-answer-engine readiness, structured data, programmatic SEO. A free scan becomes a priced, phased scope routed to the agent that owns each workstream.",
       "domain": "AI",
-      "stack": ["Next.js", "TypeScript", "Node.js", "Traefik", "systemd"],
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Traefik",
+        "systemd"
+      ],
       "state": "Live",
       "year": "2026",
-      "flag": true
+      "flag": true,
+      "shot": "shots/nusabyte-my-hero.jpg"
     },
     {
       "name": "NusaByte IT Solutions",
-      "blurb": "The practice. Sole principal from scoping through security, source handed to the client. Live ledger of RM 200,660, MyInvois integration, canary deploy with automatic rollback.",
+      "blurb": "The practice. Sole principal from scoping through security, with source code handed to the client. A live ledger of RM 200,660, MyInvois integration, and a canary deploy with automatic rollback.",
       "domain": "Platform",
-      "stack": ["Next.js", "TypeScript", "PostgreSQL", "Traefik", "Docker"],
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Traefik",
+        "Docker"
+      ],
       "state": "Live",
       "year": "2024",
-      "flag": true
+      "flag": true,
+      "shot": "shots/nusabyte-my-hero.jpg"
     },
     {
       "name": "Tunas POS",
-      "blurb": "Monorepo POS across six apps — api, pos, merchant, consumer, portal, worker. Provider-authority payment rail: no digital success without provider evidence, signed webhook intake.",
+      "blurb": "Monorepo POS across six apps: api, pos, merchant, consumer, portal, worker. The payment rail requires provider evidence before any digital success is recorded, with signed webhook intake.",
       "domain": "Commerce",
-      "stack": ["Turbo", "Hono", "Drizzle", "Zod", "React", "Vite", "PostgreSQL", "NATS"],
+      "stack": [
+        "Turbo",
+        "Hono",
+        "Drizzle",
+        "Zod",
+        "React",
+        "Vite",
+        "PostgreSQL",
+        "NATS"
+      ],
       "state": "Active",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "SME OS",
-      "blurb": "Owner workspace for small businesses: React 19 front end, FastAPI backend, everything an SME needs to run without buying six subscriptions.",
+      "blurb": "Owner workspace for small businesses. React 19 front end, FastAPI backend. Covers what an SME needs without buying six subscriptions.",
       "domain": "Commerce",
-      "stack": ["React 19", "Vite", "Tailwind", "TypeScript", "FastAPI", "Vitest"],
+      "stack": [
+        "React 19",
+        "Vite",
+        "Tailwind",
+        "TypeScript",
+        "FastAPI",
+        "Vitest"
+      ],
       "state": "Active",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "evolvepayboost-web",
-      "blurb": "Payment-boost platform with a realtime dashboard — live updates over Socket.IO, Prisma data layer, TanStack Query cache, Recharts reporting.",
+      "blurb": "Payment-boost platform with a realtime dashboard. Live updates over Socket.IO, a Prisma data layer, TanStack Query cache, and Recharts reporting.",
       "domain": "Commerce",
-      "stack": ["React", "Vite", "Express", "Prisma", "Zustand", "Socket.IO", "Recharts"],
+      "stack": [
+        "React",
+        "Vite",
+        "Express",
+        "Prisma",
+        "Zustand",
+        "Socket.IO",
+        "Recharts"
+      ],
       "state": "Active",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "cetaktshirt-web v2",
-      "blurb": "Sublimation landing page plus an operator dashboard — order flow, production state, and reporting in one Next.js app.",
+      "blurb": "Sublimation landing page plus an operator dashboard. Order flow, production state, and reporting in one Next.js app.",
       "domain": "Commerce",
-      "stack": ["Next.js", "React", "Tailwind", "Prisma", "Recharts", "Zod"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "Prisma",
+        "Recharts",
+        "Zod"
+      ],
       "state": "Live",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "BaaniyaraQPOS / ErawanQPOS",
-      "blurb": "Two POS deployments on one codebase pattern — terminal, merchant console, and offline-tolerant sync.",
+      "blurb": "Two POS deployments on one pattern: terminal, merchant console, and offline-tolerant sync.",
       "domain": "Commerce",
-      "stack": ["TypeScript", "React", "PostgreSQL"],
+      "stack": [
+        "TypeScript",
+        "React",
+        "PostgreSQL"
+      ],
       "state": "Active",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "Vendor Portal",
-      "blurb": "Client vendor portal at proposal stage — onboarding, document exchange, and a 12-week delivery plan (4 weeks go-live, 8 weeks UAT).",
+      "blurb": "Client vendor portal at proposal stage. Onboarding, document exchange, and a 12-week delivery plan (4 weeks go-live, 8 weeks UAT).",
       "domain": "Commerce",
-      "stack": ["Next.js", "React", "Tailwind", "TypeScript"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "TypeScript"
+      ],
       "state": "Proposal",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "penguinpath",
-      "blurb": "Learn Linux before you install it. A self-hosted, Neovim-inspired LMS where the terminal is the classroom — every lesson is a real shell session.",
+      "blurb": "Learn Linux before you install it. A self-hosted, Neovim-inspired LMS where the terminal is the classroom and every lesson is a real shell session.",
       "domain": "Product",
-      "stack": ["Next.js", "React", "Tailwind", "TypeScript", "Zod"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "TypeScript",
+        "Zod"
+      ],
       "state": "Live",
-      "year": "2025"
+      "year": "2025",
+      "shot": null
     },
     {
       "name": "prodigylearning-lms",
       "blurb": "Web LMS with course authoring, progress tracking, and analytics dashboards for instructors.",
       "domain": "Product",
-      "stack": ["React", "Vite", "Tailwind", "TypeScript", "Framer Motion", "Recharts"],
+      "stack": [
+        "React",
+        "Vite",
+        "Tailwind",
+        "TypeScript",
+        "Framer Motion",
+        "Recharts"
+      ],
       "state": "Shipped",
-      "year": "2025"
+      "year": "2025",
+      "shot": null
     },
     {
       "name": "wirasiber-academy",
       "blurb": "Cybersecurity training as an online RPG. Players work through attack and defence scenarios that map to real certification objectives.",
       "domain": "Security",
-      "stack": ["React", "Vite", "Tailwind", "TypeScript", "Express"],
+      "stack": [
+        "React",
+        "Vite",
+        "Tailwind",
+        "TypeScript",
+        "Express"
+      ],
       "state": "Live",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "ThreatWatch-AI",
-      "blurb": "Browser extension that flags malicious destinations before you load them, backed by production threat endpoints.",
+      "blurb": "Browser extension that flags malicious destinations before they load, backed by production threat endpoints.",
       "domain": "Security",
-      "stack": ["JavaScript", "Browser Extension", "Threat Intel API"],
+      "stack": [
+        "JavaScript",
+        "Browser Extension",
+        "Threat Intel API"
+      ],
       "state": "Live",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "kawal-ai",
-      "blurb": "A cybersecurity approach built for SMEs — the controls that actually matter, priced so a small business can afford them.",
+      "blurb": "A cybersecurity approach for SMEs. The controls that matter, priced so a small business can afford them.",
       "domain": "Security",
-      "stack": ["TypeScript", "React"],
+      "stack": [
+        "TypeScript",
+        "React"
+      ],
       "state": "Live",
-      "year": "2025"
+      "year": "2025",
+      "shot": null
     },
     {
       "name": "open-reverselab + rea MCP",
       "blurb": "Reverse-engineering lab exposing 140 MCP tools over Ghidra, rizin, Burp, Frida, and procmon. Static and runtime analysis in one interface.",
       "domain": "Security",
-      "stack": ["Python", "MCP", "Ghidra", "rizin", "Frida", "Docker"],
+      "stack": [
+        "Python",
+        "MCP",
+        "Ghidra",
+        "rizin",
+        "Frida",
+        "Docker"
+      ],
       "state": "Live",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "redteam-ctf",
       "blurb": "CTF platform with challenge delivery, flag validation, and scoring.",
       "domain": "Security",
-      "stack": ["TypeScript", "Zod", "React"],
+      "stack": [
+        "TypeScript",
+        "Zod",
+        "React"
+      ],
       "state": "Live",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "hermes-agent-jebatcore",
-      "blurb": "The control room: 27 agent definitions, each with its own runbook, allowed/forbidden list, and approval gates. The discipline is the product.",
+      "blurb": "The control room. 27 agent definitions, each with its own runbook, allowed and forbidden list, and approval gates. The discipline is the product.",
       "domain": "Platform",
-      "stack": ["Python", "Shell", "Docker", "Traefik"],
+      "stack": [
+        "Python",
+        "Shell",
+        "Docker",
+        "Traefik"
+      ],
       "state": "Live",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "jebatcore-cli",
       "blurb": "Unified multi-provider coding-agent CLI with profiles for Codex, OpenAI, Gemini, and Ollama. Dormant since April 2026.",
       "domain": "Platform",
-      "stack": ["React", "TypeScript", "Zod", "TUI"],
+      "stack": [
+        "React",
+        "TypeScript",
+        "Zod",
+        "TUI"
+      ],
       "state": "Dormant",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "nb-* toolchain",
-      "blurb": "In-house ops CLIs — bus, seo, ledger, invoicing, Threads and LinkedIn publishing, profile state. Python 3 standard library only, no dependency surface to audit.",
+      "blurb": "In-house ops CLIs: bus, seo, ledger, invoicing, Threads and LinkedIn publishing, profile state. Python 3 standard library only, so there is no dependency surface to audit.",
       "domain": "Platform",
-      "stack": ["Python 3 stdlib"],
+      "stack": [
+        "Python 3 stdlib"
+      ],
       "state": "Live",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "ALAND-Production",
       "blurb": "Client production application, actively maintained.",
       "domain": "Client",
-      "stack": ["TypeScript"],
+      "stack": [
+        "TypeScript"
+      ],
       "state": "Active",
-      "year": "2026"
+      "year": "2026",
+      "shot": null
     },
     {
       "name": "Vendor & client delivery line",
-      "blurb": "Thirty-plus shipped engagements: LMS, POS, listings, law firm, property, GPS tracking, print, F&B, automotive. Same delivery discipline, different verticals.",
+      "blurb": "Thirty-plus shipped engagements across LMS, POS, listings, law firm, property, GPS tracking, print, F&B, and automotive. Same delivery discipline, different verticals.",
       "domain": "Client",
-      "stack": ["Next.js", "React", "Vite", "TypeScript", "PostgreSQL"],
+      "stack": [
+        "Next.js",
+        "React",
+        "Vite",
+        "TypeScript",
+        "PostgreSQL"
+      ],
       "state": "Shipped",
-      "year": "2017–2026"
+      "year": "2017–2026",
+      "shot": null
     }
   ]
 }
