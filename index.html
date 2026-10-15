@@ -14,7 +14,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23030303'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' fill='%2322d3ee' text-anchor='middle'%3ESS%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -47,13 +47,13 @@
 }
 </script>
 <style>
-  /* Stealth-Dark Tactical. No external requests except the font CDN.
-     CRT scanlines are a fixed overlay at 3% opacity — cheap, no repaint cost. */
+  /* Stealth-Dark Tactical. One external request (fonts), no build step. */
   :root {
     --ink: #030303;
     --surface: #0a0b0e;
     --raised: #101217;
     --border: #1a1d24;
+    --border-hi: #2b3140;
     --text: #e6e9ef;
     --dim: #8b929e;
     --faint: #5a616d;
@@ -61,6 +61,7 @@
     --purple: #a855f7;
     --amber: #f59e0b;
     --green: #34d399;
+    --red: #f87171;
     --display: "Space Grotesk", "Inter", system-ui, sans-serif;
     --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
     --mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
@@ -68,7 +69,6 @@
   }
 
   * { box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -80,184 +80,188 @@
     overflow-x: hidden;
   }
 
-  /* Faint CRT scanline field. Pure decoration, pointer-transparent. */
   body::after {
     content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.022) 0px,
-      rgba(255, 255, 255, 0.022) 1px,
-      transparent 1px,
-      transparent 3px
-    );
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 9999;
+    background: repeating-linear-gradient(to bottom,
+      rgba(255,255,255,0.022) 0px, rgba(255,255,255,0.022) 1px,
+      transparent 1px, transparent 3px);
   }
 
-  ::selection { background: rgba(34, 211, 238, 0.28); color: #fff; }
-
+  ::selection { background: rgba(34,211,238,0.28); color: #fff; }
   a { color: var(--cyan); text-decoration: none; }
   a:hover { text-decoration: underline; text-underline-offset: 3px; }
-
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
   /* ---------- nav ---------- */
   nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(3, 3, 3, 0.86);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(3,3,3,0.88);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
-  nav .wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
   .brand {
-    font: 600 15px var(--display);
-    letter-spacing: 0.02em;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font: 600 15px var(--display); letter-spacing: 0.02em; color: var(--text);
+    display: flex; align-items: center; gap: 10px;
   }
-  .brand-dot {
-    width: 8px; height: 8px;
-    background: var(--cyan);
-    box-shadow: 0 0 10px var(--cyan);
+  .brand-dot { width: 8px; height: 8px; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+  nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; font: 500 13px var(--body); }
+  nav ul a { color: var(--dim); transition: color .15s; }
+  nav ul a:hover, nav ul a.active { color: var(--cyan); text-decoration: none; }
+  .nav-cta {
+    font: 600 12.5px var(--body); padding: 7px 14px;
+    border: 1px solid rgba(34,211,238,0.4); color: #fff;
+    background: rgba(34,211,238,0.1);
   }
-  nav ul {
-    display: flex;
-    gap: 26px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font: 500 13px var(--body);
-  }
-  nav ul a { color: var(--dim); }
-  nav ul a:hover { color: var(--cyan); text-decoration: none; }
-  @media (max-width: 720px) { nav ul { display: none; } }
+  .nav-cta:hover { background: rgba(34,211,238,0.18); text-decoration: none; }
+  @media (max-width: 860px) { nav ul { display: none; } }
 
   /* ---------- hero ---------- */
-  header {
-    padding: 88px 0 64px;
-    position: relative;
-    overflow: hidden;
-  }
-  /* Two soft radial washes — cyan upper-left, purple lower-right. */
+  header { padding: 92px 0 70px; position: relative; overflow: hidden; }
   header::before {
-    content: "";
-    position: absolute;
-    top: -30%; left: -10%;
+    content: ""; position: absolute; top: -30%; left: -10%;
     width: 60%; height: 90%;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.09), transparent 68%);
+    background: radial-gradient(circle, rgba(34,211,238,0.10), transparent 68%);
     pointer-events: none;
   }
   header::after {
-    content: "";
-    position: absolute;
-    bottom: -40%; right: -10%;
+    content: ""; position: absolute; bottom: -40%; right: -10%;
     width: 55%; height: 90%;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.08), transparent 68%);
+    background: radial-gradient(circle, rgba(168,85,247,0.09), transparent 68%);
     pointer-events: none;
   }
   .eyebrow {
-    font: 500 12px var(--mono);
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--cyan);
-    margin: 0 0 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    font: 500 12px var(--mono); letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--cyan); margin: 0 0 20px; display: flex; align-items: center; gap: 12px;
   }
-  .eyebrow::before {
-    content: "";
-    width: 34px;
-    height: 1px;
-    background: var(--cyan);
-  }
+  .eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--cyan); }
   h1 {
-    font: 700 clamp(34px, 6.2vw, 62px) / 1.06 var(--display);
-    letter-spacing: -0.025em;
-    margin: 0 0 8px;
-    max-width: 16ch;
+    font: 700 clamp(34px, 6.4vw, 64px) / 1.05 var(--display);
+    letter-spacing: -0.028em; margin: 0 0 10px; max-width: 17ch;
   }
   h1 .grad {
     background: linear-gradient(100deg, var(--cyan), var(--purple));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
+  /* Typewriter caret on the role line. */
   .hero-role {
-    font: 500 clamp(15px, 2.1vw, 19px) var(--body);
-    color: var(--dim);
-    margin: 0 0 30px;
-    max-width: 56ch;
+    font: 500 clamp(15px, 2.1vw, 19px) var(--body); color: var(--dim);
+    margin: 0 0 30px; max-width: 58ch; min-height: 1.7em;
   }
+  .hero-role .caret {
+    display: inline-block; width: 2px; height: 1.05em;
+    background: var(--cyan); vertical-align: text-bottom;
+    animation: blink 1.05s step-end infinite; margin-left: 2px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
   .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
   .btn {
-    font: 600 13.5px var(--body);
-    padding: 11px 20px;
-    border: 1px solid var(--border);
-    background: var(--raised);
-    color: var(--text);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: border-color 0.15s, background 0.15s;
+    font: 600 13.5px var(--body); padding: 11px 20px;
+    border: 1px solid var(--border); background: var(--raised); color: var(--text);
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: border-color .15s, background .15s, transform .15s;
   }
-  .btn:hover { border-color: var(--cyan); text-decoration: none; background: rgba(34, 211, 238, 0.07); }
+  .btn:hover { border-color: var(--cyan); text-decoration: none; background: rgba(34,211,238,0.07); transform: translateY(-1px); }
   .btn-primary {
-    background: linear-gradient(100deg, rgba(34, 211, 238, 0.16), rgba(168, 85, 247, 0.16));
-    border-color: rgba(34, 211, 238, 0.42);
-    color: #fff;
+    background: linear-gradient(100deg, rgba(34,211,238,0.16), rgba(168,85,247,0.16));
+    border-color: rgba(34,211,238,0.42); color: #fff;
   }
   .hero-meta {
-    margin-top: 34px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 22px;
-    font: 400 13px var(--mono);
-    color: var(--faint);
+    margin-top: 34px; display: flex; flex-wrap: wrap; gap: 8px 22px;
+    font: 400 13px var(--mono); color: var(--faint);
   }
   .hero-meta b { color: var(--dim); font-weight: 500; }
+  .live-dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green); box-shadow: 0 0 8px var(--green);
+    margin-right: 6px; animation: pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
 
   /* ---------- sections ---------- */
-  section { padding: 68px 0; border-top: 1px solid var(--border); }
+  section { padding: 70px 0; border-top: 1px solid var(--border); }
   .sec-head { margin-bottom: 40px; }
   .sec-num {
-    font: 500 11.5px var(--mono);
-    color: var(--amber);
-    letter-spacing: 0.2em;
-    margin: 0 0 10px;
+    font: 500 11.5px var(--mono); color: var(--amber);
+    letter-spacing: 0.2em; margin: 0 0 10px;
   }
   h2 {
     font: 700 clamp(25px, 3.6vw, 36px) / 1.15 var(--display);
-    letter-spacing: -0.02em;
-    margin: 0 0 12px;
+    letter-spacing: -0.02em; margin: 0 0 12px;
   }
-  .sec-sub { color: var(--dim); margin: 0; max-width: 66ch; font-size: 15px; }
+  .sec-sub { color: var(--dim); margin: 0; max-width: 68ch; font-size: 15px; }
+  code.inline { font-family: var(--mono); font-size: 13px; color: var(--cyan); }
+
+  /* Scroll reveal. Opt-out under prefers-reduced-motion. */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+    .live-dot, .hero-role .caret { animation: none; }
+  }
 
   /* ---------- stats ---------- */
-  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(178px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .stat { background: var(--surface); padding: 22px 20px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(178px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .stat { background: var(--surface); padding: 22px 20px; transition: background .2s; }
+  .stat:hover { background: var(--raised); }
   .stat-value {
-    font: 700 31px var(--display);
-    letter-spacing: -0.03em;
+    font: 700 31px var(--display); letter-spacing: -0.03em; line-height: 1.1;
     background: linear-gradient(100deg, var(--cyan), var(--purple));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    line-height: 1.1;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .stat-label { font: 600 12.5px var(--body); color: var(--text); margin-top: 7px; }
   .stat-detail { font: 400 11.5px var(--mono); color: var(--faint); margin-top: 5px; line-height: 1.5; }
+
+  /* ---------- console ---------- */
+  .console-shell {
+    border: 1px solid var(--border); background: var(--surface);
+    overflow: hidden; box-shadow: 0 24px 60px -30px rgba(34,211,238,0.16);
+  }
+  .console-bar {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; background: var(--raised); border-bottom: 1px solid var(--border);
+    font: 500 11.5px var(--mono); color: var(--faint);
+  }
+  .console-dots { display: flex; gap: 6px; }
+  .console-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--border-hi); }
+  .console-dots i:first-child { background: #3f2d2d; }
+  .console-dots i:nth-child(2) { background: #3f3a2a; }
+  .console-dots i:nth-child(3) { background: #243b33; }
+  .console-hint { margin-left: auto; }
+  .console-body {
+    height: 340px; overflow-y: auto; padding: 16px 18px;
+    font: 400 13.5px/1.75 var(--mono); color: #c3c9d4;
+    scrollbar-width: thin; scrollbar-color: var(--border-hi) transparent;
+  }
+  .console-body::-webkit-scrollbar { width: 8px; }
+  .console-body::-webkit-scrollbar-thumb { background: var(--border-hi); }
+  .console-line { white-space: pre-wrap; word-break: break-word; }
+  .console-line.cmd { color: #fff; }
+  .console-line.cmd .p { color: var(--cyan); }
+  .console-line.err { color: var(--red); }
+  .console-line.dim { color: var(--faint); }
+  .console-line.ok { color: var(--green); }
+  .console-line.acc { color: var(--amber); }
+  .console-line b { color: var(--cyan); font-weight: 500; }
+  .console-input-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 18px; border-top: 1px solid var(--border); background: var(--raised);
+  }
+  .console-input-row .p { font: 500 13.5px var(--mono); color: var(--cyan); }
+  #console-input {
+    flex: 1; background: transparent; border: 0; outline: 0;
+    font: 400 13.5px var(--mono); color: #fff; caret-color: var(--cyan);
+  }
+  .console-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 18px 14px; background: var(--raised); }
+  .console-chips button {
+    font: 500 11.5px var(--mono); color: var(--dim);
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 4px 10px; cursor: pointer; transition: all .15s;
+  }
+  .console-chips button:hover { color: var(--cyan); border-color: var(--cyan); }
 
   /* ---------- about ---------- */
   .about-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 46px; }
@@ -266,29 +270,109 @@
   .about-grid p:first-child { margin-top: 0; }
   .about-grid p:last-child { margin-bottom: 0; }
   .caps { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); align-self: start; }
-  .cap { background: var(--surface); padding: 16px 18px; }
+  .cap { background: var(--surface); padding: 16px 18px; transition: background .2s; }
+  .cap:hover { background: var(--raised); }
   .cap-title { font: 600 13.5px var(--display); color: var(--cyan); margin: 0 0 5px; }
   .cap-body { font: 400 12.8px var(--body); color: var(--dim); margin: 0; line-height: 1.58; }
+
+  /* ---------- seo case ---------- */
+  .seo-shell { border: 1px solid var(--border); background: var(--surface); padding: 28px 30px; }
+  .seo-row { margin-bottom: 22px; }
+  .seo-row:last-of-type { margin-bottom: 0; }
+  .seo-row-top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 14px; margin-bottom: 8px; flex-wrap: wrap;
+  }
+  .seo-metric { font: 600 14px var(--display); color: var(--text); }
+  .seo-delta { font: 500 12px var(--mono); color: var(--faint); }
+  .seo-delta b { color: var(--green); font-weight: 600; }
+  .seo-track { position: relative; height: 26px; background: var(--raised); border: 1px solid var(--border); }
+  .seo-fill {
+    position: absolute; inset: 0 auto 0 0; width: 0;
+    background: linear-gradient(90deg, rgba(34,211,238,0.22), rgba(168,85,247,0.22));
+    border-right: 1px solid rgba(34,211,238,0.5);
+    transition: width 1.1s cubic-bezier(.22,.8,.3,1);
+  }
+  .seo-fill::after {
+    content: attr(data-val);
+    position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+    font: 600 12px var(--mono); color: #fff;
+  }
+  .seo-ghost {
+    position: absolute; top: 0; bottom: 0; width: 0;
+    border-right: 1px dashed rgba(245,158,11,0.65);
+    transition: width 1.1s cubic-bezier(.22,.8,.3,1);
+  }
+  .seo-ghost::after {
+    content: attr(data-val);
+    position: absolute; left: 8px; top: 50%; transform: translateY(-50%);
+    font: 500 11.5px var(--mono); color: var(--amber);
+  }
+  .seo-why { font: 400 12.5px var(--body); color: var(--dim); margin: 8px 0 0; }
+  .seo-legend {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);
+    font: 400 11.5px var(--mono); color: var(--faint);
+  }
+  .seo-legend span { display: flex; align-items: center; gap: 7px; }
+  .swatch { width: 14px; height: 10px; }
+  .swatch.before { border-right: 1px dashed var(--amber); background: transparent; }
+  .swatch.after { background: linear-gradient(90deg, rgba(34,211,238,0.35), rgba(168,85,247,0.35)); }
+
+  /* ---------- projects ---------- */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .filter {
+    font: 500 12.5px var(--body); color: var(--dim);
+    background: var(--raised); border: 1px solid var(--border);
+    padding: 7px 15px; cursor: pointer; transition: all .15s;
+  }
+  .filter:hover { color: var(--text); border-color: var(--border-hi); }
+  .filter.on {
+    color: #fff; border-color: rgba(34,211,238,0.5);
+    background: linear-gradient(100deg, rgba(34,211,238,0.16), rgba(168,85,247,0.16));
+  }
+  .filter .n { font: 500 11px var(--mono); color: var(--faint); margin-left: 6px; }
+  .filter.on .n { color: var(--cyan); }
+  .proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 16px; }
+  .proj {
+    border: 1px solid var(--border); background: var(--surface);
+    padding: 22px 24px; display: flex; flex-direction: column;
+    transition: border-color .2s, transform .2s, background .2s;
+  }
+  .proj:hover { border-color: var(--border-hi); transform: translateY(-2px); background: var(--raised); }
+  .proj.flag { border-color: rgba(34,211,238,0.28); }
+  .proj-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+  .proj-name { font: 700 17px var(--display); letter-spacing: -0.012em; margin: 0; }
+  .proj-state {
+    font: 500 10.5px var(--mono); letter-spacing: .08em; text-transform: uppercase;
+    padding: 3px 8px; border: 1px solid var(--border); color: var(--faint); white-space: nowrap;
+  }
+  .proj-state.Live { color: var(--green); border-color: rgba(52,211,153,0.35); }
+  .proj-state.Active { color: var(--cyan); border-color: rgba(34,211,238,0.35); }
+  .proj-state.Shipped { color: var(--dim); }
+  .proj-state.Proposal { color: var(--amber); border-color: rgba(245,158,11,0.35); }
+  .proj-state.Dormant { color: var(--red); border-color: rgba(248,113,113,0.3); }
+  .proj-domain { font: 500 11px var(--mono); color: var(--amber); margin: 0 0 10px; letter-spacing: .1em; text-transform: uppercase; }
+  .proj-blurb { font: 400 13.4px/1.6 var(--body); color: #b0b8c4; margin: 0 0 14px; flex: 1; }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: 5px; }
+  .proj-stack span {
+    font: 400 11px var(--mono); color: var(--dim);
+    border: 1px solid var(--border); background: var(--raised); padding: 2px 7px;
+  }
+  .proj-year { font: 400 11px var(--mono); color: var(--faint); margin-top: 12px; }
+  .proj-empty { font: 400 14px var(--mono); color: var(--faint); padding: 30px 0; }
 
   /* ---------- systems ---------- */
   .systems { display: flex; flex-direction: column; gap: 22px; }
   .system {
-    border: 1px solid var(--border);
-    background: var(--surface);
-    padding: 26px 28px;
-    position: relative;
-    transition: border-color 0.18s;
+    border: 1px solid var(--border); background: var(--surface);
+    padding: 26px 28px; transition: border-color .18s;
   }
-  .system:hover { border-color: #2b3140; }
+  .system:hover { border-color: var(--border-hi); }
   .system-top {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; margin-bottom: 16px;
+    padding-bottom: 14px; border-bottom: 1px solid var(--border);
   }
   .system-name { font: 700 21px var(--display); letter-spacing: -0.015em; margin: 0; }
   .system-kind { font: 500 12.5px var(--mono); color: var(--amber); margin: 4px 0 0; }
@@ -296,32 +380,23 @@
   .sys-block { margin-bottom: 15px; }
   .sys-block:last-of-type { margin-bottom: 0; }
   .sys-key {
-    font: 500 10.5px var(--mono);
-    letter-spacing: 0.17em;
-    text-transform: uppercase;
-    color: var(--purple);
-    margin: 0 0 5px;
+    font: 500 10.5px var(--mono); letter-spacing: 0.17em; text-transform: uppercase;
+    color: var(--purple); margin: 0 0 5px;
   }
   .sys-body { font-size: 14.2px; color: #bcc3cf; margin: 0; }
   .sys-block.broke .sys-key { color: var(--amber); }
   .sys-block.broke .sys-body { color: #a9b1bd; font-size: 13.6px; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
   .chip {
-    font: 500 11px var(--mono);
-    color: var(--dim);
-    border: 1px solid var(--border);
-    background: var(--raised);
-    padding: 3px 9px;
+    font: 500 11px var(--mono); color: var(--dim);
+    border: 1px solid var(--border); background: var(--raised); padding: 3px 9px;
   }
 
   /* ---------- experience ---------- */
   .exp { display: flex; flex-direction: column; }
   .exp-row {
-    display: grid;
-    grid-template-columns: 190px 1fr;
-    gap: 30px;
-    padding: 26px 0;
-    border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 190px 1fr; gap: 30px;
+    padding: 26px 0; border-bottom: 1px solid var(--border);
   }
   .exp-row:first-child { padding-top: 0; }
   .exp-row:last-child { border-bottom: 0; padding-bottom: 0; }
@@ -336,25 +411,18 @@
   .exp-row li:last-child { margin-bottom: 0; }
 
   /* ---------- skills ---------- */
-  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(288px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .skill-group { background: var(--surface); padding: 20px 22px; }
-  .skill-group h3 {
-    font: 600 13px var(--display);
-    color: var(--cyan);
-    margin: 0 0 12px;
-    letter-spacing: 0.01em;
-  }
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(288px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .skill-group { background: var(--surface); padding: 20px 22px; transition: background .2s; }
+  .skill-group:hover { background: var(--raised); }
+  .skill-group h3 { font: 600 13px var(--display); color: var(--cyan); margin: 0 0 12px; }
   .skill-items { display: flex; flex-wrap: wrap; gap: 5px; }
   .skill-items span {
-    font: 400 11.5px var(--mono);
-    color: var(--dim);
-    border: 1px solid var(--border);
-    padding: 3px 8px;
-    background: var(--raised);
+    font: 400 11.5px var(--mono); color: var(--dim);
+    border: 1px solid var(--border); padding: 3px 8px; background: var(--raised);
   }
 
   /* ---------- creds ---------- */
-  .creds { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+  .creds { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 22px; }
   .cred-card { border: 1px solid var(--border); background: var(--surface); padding: 22px 24px; }
   .cred-card h3 { font: 600 14px var(--display); margin: 0 0 16px; color: var(--amber); }
   .cred-item { padding: 11px 0; border-bottom: 1px solid var(--border); }
@@ -362,38 +430,33 @@
   .cred-title { font: 600 13.5px var(--body); color: var(--text); }
   .cred-sub { font: 400 12px var(--mono); color: var(--faint); margin-top: 3px; }
   .cert {
-    font: 500 13px var(--body);
-    color: #bcc3cf;
-    padding: 8px 0 8px 20px;
-    position: relative;
-    border-bottom: 1px solid var(--border);
+    font: 500 13px var(--body); color: #bcc3cf;
+    padding: 8px 0 8px 20px; position: relative; border-bottom: 1px solid var(--border);
   }
   .cert:last-child { border-bottom: 0; }
   .cert::before { content: "▸"; position: absolute; left: 0; color: var(--green); font-size: 11px; }
 
   /* ---------- contact ---------- */
-  #contact { text-align: center; padding: 84px 0; }
+  #contact { text-align: center; padding: 86px 0; }
   #contact h2 { margin-left: auto; margin-right: auto; }
   .contact-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 30px; }
+  .copy-row {
+    margin-top: 26px; display: inline-flex; align-items: center; gap: 10px;
+    font: 400 13px var(--mono); color: var(--faint);
+    border: 1px solid var(--border); background: var(--surface); padding: 9px 14px;
+  }
+  .copy-row button {
+    font: 500 11.5px var(--mono); color: var(--cyan);
+    background: transparent; border: 1px solid var(--border); padding: 3px 10px; cursor: pointer;
+  }
+  .copy-row button:hover { border-color: var(--cyan); }
   .contact-lines {
-    margin-top: 32px;
-    font: 400 13px var(--mono);
-    color: var(--faint);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    margin-top: 30px; font: 400 13px var(--mono); color: var(--faint);
+    display: flex; flex-direction: column; gap: 6px;
   }
 
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 26px 0;
-    font: 400 12px var(--mono);
-    color: var(--faint);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+  footer { border-top: 1px solid var(--border); padding: 26px 0; font: 400 12px var(--mono); color: var(--faint); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
 </style>
 </head>
 <body>
@@ -401,14 +464,15 @@
 <nav>
   <div class="wrap">
     <a class="brand" href="#top"><span class="brand-dot"></span>SHAIDAN SHAARI</a>
-    <ul>
+    <ul id="nav-links">
+      <li><a href="#console">Console</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#systems">Systems</a></li>
+      <li><a href="#proof">Proof</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#credentials">Credentials</a></li>
-      <li><a href="#contact">Contact</a></li>
     </ul>
+    <a class="nav-cta" href="#contact">Hire me</a>
   </div>
 </nav>
 
@@ -416,9 +480,10 @@
   <div class="wrap">
     <p class="eyebrow">Infrastructure &amp; Security → Agent Systems</p>
     <h1>A decade of uptime,<br /><span class="grad">now applied to AI.</span></h1>
-    <p class="hero-role" id="hero-role"></p>
+    <p class="hero-role" id="hero-role"><span class="caret"></span></p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="cv.html">View CV →</a>
+      <a class="btn btn-primary" href="#projects">See the work →</a>
+      <a class="btn" href="cv.html">View CV</a>
       <a class="btn" href="shaidan-shaari-cv.pdf" download>Download PDF ↓</a>
       <a class="btn" id="hero-linkedin" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn" id="hero-github" target="_blank" rel="noopener">GitHub</a>
@@ -426,7 +491,7 @@
     <div class="hero-meta">
       <span><b>Location</b> <span id="hero-loc"></span></span>
       <span><b>Company</b> NusaByte IT Solutions</span>
-      <span><b>Status</b> Open to remote · hybrid · Klang Valley</span>
+      <span><span class="live-dot"></span><b>Status</b> Open to remote · hybrid · Klang Valley</span>
     </div>
   </div>
 </header>
@@ -437,24 +502,71 @@
   </div>
 </section>
 
+<section id="console">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">01 / CONSOLE</p>
+      <h2>Ask me directly</h2>
+      <p class="sec-sub">Type a command. This reads the same <code class="inline">resume.json</code> the rest of the page renders — no chatbot, no invented answers. <code class="inline">help</code> lists everything.</p>
+    </div>
+    <div class="console-shell">
+      <div class="console-bar">
+        <div class="console-dots"><i></i><i></i><i></i></div>
+        <span>shaidan@nusabyte — portfolio</span>
+        <span class="console-hint">↑↓ history · Tab completes</span>
+      </div>
+      <div class="console-body" id="console-body" aria-live="polite"></div>
+      <div class="console-input-row">
+        <span class="p">shaidan@nusabyte:~$</span>
+        <input id="console-input" autocomplete="off" autocapitalize="off" spellcheck="false"
+               aria-label="Portfolio console input" placeholder="help" />
+      </div>
+      <div class="console-chips" id="console-chips"></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">02 / PROJECTS</p>
+      <h2>What I've built</h2>
+      <p class="sec-sub">Filter by domain. Cyan-bordered cards are the four that carry the positioning.</p>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="proj-grid" id="proj-grid"></div>
+  </div>
+</section>
+
 <section id="about">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-num">01 / ABOUT</p>
+      <p class="sec-num">03 / ABOUT</p>
       <h2>The operational half of AI</h2>
       <p class="sec-sub">Most AI work stops at the demo. I'm interested in the part after — what happens when the provider degrades, who approved that message, what it costs at 10× volume, and how it rolls back.</p>
     </div>
     <div class="about-grid">
-      <div id="about-body"></div>
+      <div id="about-body" class="reveal"></div>
       <div class="caps" id="caps"></div>
     </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">04 / PROOF</p>
+      <h2>Measured, not claimed</h2>
+      <p class="sec-sub" id="seo-headline"></p>
+    </div>
+    <div class="seo-shell reveal" id="seo-shell"></div>
   </div>
 </section>
 
 <section id="systems">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-num">02 / SYSTEMS</p>
+      <p class="sec-num">05 / SYSTEMS</p>
       <h2>Things I built and run</h2>
       <p class="sec-sub">Each entry is problem → approach → what shipped → what broke. The breakage is the part most portfolios leave out, and it's the part that proves you were actually operating the thing.</p>
     </div>
@@ -465,8 +577,8 @@
 <section id="experience">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-num">03 / EXPERIENCE</p>
-      <h2>Ten years, ten roles</h2>
+      <p class="sec-num">06 / EXPERIENCE</p>
+      <h2>Ten years, nine roles</h2>
       <p class="sec-sub">Helpdesk → server room → e-commerce → agent systems. The arc is the asset: it's the reason I can talk about blast radius and rollback strategy instead of only about models.</p>
     </div>
     <div class="exp" id="exp-list"></div>
@@ -480,7 +592,7 @@
 <section id="skills">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-num">04 / SKILLS</p>
+      <p class="sec-num">07 / SKILLS</p>
       <h2>The stack</h2>
     </div>
     <div class="skill-grid" id="skill-grid"></div>
@@ -490,7 +602,7 @@
 <section id="credentials">
   <div class="wrap">
     <div class="sec-head">
-      <p class="sec-num">05 / CREDENTIALS</p>
+      <p class="sec-num">08 / CREDENTIALS</p>
       <h2>Education &amp; certifications</h2>
     </div>
     <div class="creds">
@@ -512,7 +624,7 @@
 
 <section id="contact">
   <div class="wrap">
-    <p class="sec-num">06 / CONTACT</p>
+    <p class="sec-num">09 / CONTACT</p>
     <h2>Let's talk</h2>
     <p class="sec-sub" style="margin:0 auto;">Agentic AI or AI automation work where the operational half is taken seriously.</p>
     <div class="contact-links">
@@ -523,123 +635,458 @@
       <a class="btn" id="cta-jebat" target="_blank" rel="noopener">jebat.online</a>
       <a class="btn" href="shaidan-shaari-cv.pdf" download>CV (PDF)</a>
     </div>
-    <div class="contact-lines">
+    <div class="copy-row">
       <span id="contact-email"></span>
+      <button id="copy-email" type="button">copy</button>
+    </div>
+    <div class="contact-lines">
       <span id="contact-phone"></span>
+      <span id="contact-loc"></span>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;width:100%;">
+  <div class="wrap">
     <span>© 2026 Shaidan Shaari Bin Abd Rasep · NusaByte IT Solutions (SSM 202603010679)</span>
     <span>KEEP COMMAND.</span>
   </div>
 </footer>
 
 <script>
-// Content comes from resume.json so the site and the CV share one source.
-// The template renders it; nothing here is hardcoded that belongs in the data.
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 fetch("resume.json")
-  .then((r) => {
-    if (!r.ok) throw new Error("resume.json " + r.status);
-    return r.json();
-  })
-  .then((d) => {
-    document.title = `${d.shortName} — ${d.role}`;
-    $("hero-role").textContent = d.role + ". Founder of " + d.company.name + ".";
-    $("hero-loc").textContent = d.location;
-    $("hero-linkedin").href = d.links.linkedin;
-    $("hero-github").href = d.links.github;
-
-    $("stats").innerHTML = d.stats.map((s) => `
-      <div class="stat">
-        <div class="stat-value">${esc(s.value)}</div>
-        <div class="stat-label">${esc(s.label)}</div>
-        <div class="stat-detail">${esc(s.detail)}</div>
-      </div>`).join("");
-
-    $("about-body").innerHTML = d.summary.map((p) => `<p>${esc(p)}</p>`).join("");
-
-    $("caps").innerHTML = d.capabilities.map((c) => `
-      <div class="cap">
-        <p class="cap-title">${esc(c.title)}</p>
-        <p class="cap-body">${esc(c.body)}</p>
-      </div>`).join("");
-
-    $("systems-list").innerHTML = d.systems.map((s) => `
-      <article class="system">
-        <div class="system-top">
-          <div>
-            <h3 class="system-name">${esc(s.name)}</h3>
-            <p class="system-kind">${esc(s.kind)}</p>
-          </div>
-          <span class="system-year">${esc(s.year)}</span>
-        </div>
-        <div class="sys-block"><p class="sys-key">Problem</p><p class="sys-body">${esc(s.problem)}</p></div>
-        <div class="sys-block"><p class="sys-key">Approach</p><p class="sys-body">${esc(s.approach)}</p></div>
-        <div class="sys-block"><p class="sys-key">Shipped</p><p class="sys-body">${esc(s.shipped)}</p></div>
-        <div class="sys-block broke"><p class="sys-key">Broke</p><p class="sys-body">${esc(s.broke)}</p></div>
-        <div class="chips">${s.stack.map((t) => `<span class="chip">${esc(t)}</span>`).join("")}</div>
-      </article>`).join("");
-
-    $("exp-list").innerHTML = d.experience.map((e) => `
-      <div class="exp-row">
-        <div>
-          <div class="exp-period">${esc(e.period)}</div>
-          <div class="exp-place">${esc(e.place)}</div>
-        </div>
-        <div>
-          <h3 class="exp-role">${esc(e.role)}</h3>
-          <p class="exp-company">${esc(e.company)}</p>
-          ${e.summary ? `<p class="exp-summary">${esc(e.summary)}</p>` : ""}
-          <ul>${e.bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
-        </div>
-      </div>`).join("");
-
-    $("training-list").innerHTML = d.training.map((t) => `
-      <div>
-        <div class="exp-period">${esc(t.period)}</div>
-        <h3 class="exp-role" style="font-size:15px;">${esc(t.role)} — ${esc(t.company)}</h3>
-        <p class="sys-body">${esc(t.detail)}</p>
-      </div>`).join("");
-
-    $("skill-grid").innerHTML = d.skills.map((g) => `
-      <div class="skill-group">
-        <h3>${esc(g.group)}</h3>
-        <div class="skill-items">${g.items.map((i) => `<span>${esc(i)}</span>`).join("")}</div>
-      </div>`).join("");
-
-    $("edu-list").innerHTML = d.education.map((e) => `
-      <div class="cred-item">
-        <div class="cred-title">${esc(e.degree)}</div>
-        <div class="cred-sub">${esc(e.school)}</div>
-        <div class="cred-sub">${esc(e.period)}${e.note ? " · " + esc(e.note) : ""}</div>
-      </div>`).join("");
-
-    $("cert-list").innerHTML = d.certifications.map((c) => `<div class="cert">${esc(c)}</div>`).join("");
-    $("lang-list").textContent = d.languages.join(" · ");
-
-    $("cta-email").href = "mailto:" + d.email;
-    $("cta-linkedin").href = d.links.linkedin;
-    $("cta-github").href = d.links.github;
-    $("cta-nusabyte").href = d.links.nusabyte;
-    $("cta-jebat").href = d.links.jebat;
-    $("contact-email").textContent = d.email;
-    $("contact-phone").textContent = d.phone;
-  })
+  .then((r) => { if (!r.ok) throw new Error("resume.json " + r.status); return r.json(); })
+  .then(render)
   .catch((err) => {
-    // Loud failure, not a blank page. The site is useless without its data.
     document.body.insertAdjacentHTML("afterbegin",
       `<div style="background:#3b1114;border-bottom:1px solid #7f1d1d;color:#fca5a5;
         font:500 13px ui-monospace,monospace;padding:14px 20px;">
-        Failed to load resume.json — ${esc(err.message)}
-      </div>`);
+        Failed to load resume.json — ${esc(err.message)}</div>`);
   });
+
+function render(d) {
+  document.title = `${d.shortName} — ${d.role}`;
+  $("hero-loc").textContent = d.location;
+  $("hero-linkedin").href = d.links.linkedin;
+  $("hero-github").href = d.links.github;
+  $("cta-email").href = "mailto:" + d.email;
+  $("cta-linkedin").href = d.links.linkedin;
+  $("cta-github").href = d.links.github;
+  $("cta-nusabyte").href = d.links.nusabyte;
+  $("cta-jebat").href = d.links.jebat;
+  $("contact-email").textContent = d.email;
+  $("contact-phone").textContent = d.phone;
+  $("contact-loc").textContent = d.location + " · " + d.languages.join(" · ");
+
+  typeRole(d.role + " · Founder of " + d.company.name);
+  renderStats(d);
+  renderConsole(d);
+  renderProjects(d);
+  renderAbout(d);
+  renderSeo(d);
+  renderSystems(d);
+  renderExperience(d);
+  renderSkills(d);
+  renderCreds(d);
+  initReveal();
+  initScrollSpy();
+}
+
+/* ---------- typed role line ---------- */
+function typeRole(text) {
+  const el = $("hero-role");
+  const caret = '<span class="caret"></span>';
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    el.innerHTML = esc(text) + caret; return;
+  }
+  let i = 0;
+  el.innerHTML = caret;
+  (function tick() {
+    if (i <= text.length) {
+      el.innerHTML = esc(text.slice(0, i)) + caret;
+      i++;
+      setTimeout(tick, i < 4 ? 55 : 26);
+    }
+  })();
+}
+
+/* ---------- stats: count up on view ---------- */
+function renderStats(d) {
+  $("stats").innerHTML = d.stats.map((s) => `
+    <div class="stat">
+      <div class="stat-value" data-target="${esc(s.value)}">0</div>
+      <div class="stat-label">${esc(s.label)}</div>
+      <div class="stat-detail">${esc(s.detail)}</div>
+    </div>`).join("");
+
+  // Animate only purely numeric values; "RM 500K+" style renders as-is.
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      const target = e.target.dataset.target;
+      const n = parseFloat(String(target).replace(/[^0-9.]/g, ""));
+      if (!isFinite(n) || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        e.target.textContent = target; return;
+      }
+      const dur = 900, t0 = performance.now();
+      (function step(t) {
+        const p = Math.min(1, (t - t0) / dur);
+        e.target.textContent = String(Math.round(n * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) requestAnimationFrame(step);
+        else e.target.textContent = target;
+      })(t0);
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll(".stat-value").forEach((el) => io.observe(el));
+}
+
+/* ---------- projects + filters ---------- */
+let PROJECTS = [];
+let ACTIVE_FILTER = "All";
+
+function renderProjects(d) {
+  PROJECTS = d.projects || [];
+  const domains = ["All", ...new Set(PROJECTS.map((p) => p.domain))];
+  $("filters").innerHTML = domains.map((dom) => {
+    const n = dom === "All" ? PROJECTS.length : PROJECTS.filter((p) => p.domain === dom).length;
+    return `<button class="filter${dom === ACTIVE_FILTER ? " on" : ""}" data-domain="${esc(dom)}" type="button">
+      ${esc(dom)}<span class="n">${n}</span></button>`;
+  }).join("");
+  $("filters").querySelectorAll(".filter").forEach((b) => {
+    b.addEventListener("click", () => {
+      ACTIVE_FILTER = b.dataset.domain;
+      $("filters").querySelectorAll(".filter").forEach((x) => x.classList.toggle("on", x === b));
+      paintProjects();
+    });
+  });
+  paintProjects();
+}
+
+function paintProjects() {
+  const list = ACTIVE_FILTER === "All" ? PROJECTS : PROJECTS.filter((p) => p.domain === ACTIVE_FILTER);
+  $("proj-grid").innerHTML = list.length
+    ? list.map((p) => `
+      <article class="proj${p.flag ? " flag" : ""}">
+        <div class="proj-top">
+          <h3 class="proj-name">${esc(p.name)}</h3>
+          <span class="proj-state ${esc(p.state)}">${esc(p.state)}</span>
+        </div>
+        <p class="proj-domain">${esc(p.domain)}</p>
+        <p class="proj-blurb">${esc(p.blurb)}</p>
+        <div class="proj-stack">${(p.stack || []).map((s) => `<span>${esc(s)}</span>`).join("")}</div>
+        <div class="proj-year">${esc(p.year)}</div>
+      </article>`).join("")
+    : `<p class="proj-empty">// no projects in ${esc(ACTIVE_FILTER)}</p>`;
+}
+
+/* ---------- seo before/after ---------- */
+function renderSeo(d) {
+  if (!d.seoCase) return;
+  $("seo-headline").textContent = d.seoCase.headline;
+  $("seo-shell").innerHTML =
+    d.seoCase.rows.map((r) => `
+      <div class="seo-row">
+        <div class="seo-row-top">
+          <span class="seo-metric">${esc(r.metric)}</span>
+          <span class="seo-delta">${r.before} → <b>${r.after}</b></span>
+        </div>
+        <div class="seo-track">
+          <div class="seo-ghost" data-val="${r.before}" data-w="${r.before}"></div>
+          <div class="seo-fill"  data-val="${r.after}" data-w="${r.after}"></div>
+        </div>
+        <p class="seo-why">${esc(r.why)}</p>
+      </div>`).join("") +
+    `<div class="seo-legend">
+       <span><i class="swatch before"></i>before</span>
+       <span><i class="swatch after"></i>after</span>
+     </div>
+     <p class="seo-why" style="margin-top:14px;color:var(--faint);font-family:var(--mono);font-size:11.5px;">
+       ${esc(d.seoCase.note)}
+     </p>`;
+
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      $("seo-shell").querySelectorAll(".seo-fill, .seo-ghost").forEach((el, i) => {
+        setTimeout(() => { el.style.width = el.dataset.w + "%"; }, i * 90);
+      });
+    });
+  }, { threshold: 0.25 });
+  io.observe($("seo-shell"));
+}
+
+/* ---------- static sections ---------- */
+function renderAbout(d) {
+  $("about-body").innerHTML = d.summary.map((p) => `<p>${esc(p)}</p>`).join("");
+  $("caps").innerHTML = d.capabilities.map((c) => `
+    <div class="cap">
+      <p class="cap-title">${esc(c.title)}</p>
+      <p class="cap-body">${esc(c.body)}</p>
+    </div>`).join("");
+}
+
+function renderSystems(d) {
+  $("systems-list").innerHTML = d.systems.map((s) => `
+    <article class="system reveal">
+      <div class="system-top">
+        <div>
+          <h3 class="system-name">${esc(s.name)}</h3>
+          <p class="system-kind">${esc(s.kind)}</p>
+        </div>
+        <span class="system-year">${esc(s.year)}</span>
+      </div>
+      <div class="sys-block"><p class="sys-key">Problem</p><p class="sys-body">${esc(s.problem)}</p></div>
+      <div class="sys-block"><p class="sys-key">Approach</p><p class="sys-body">${esc(s.approach)}</p></div>
+      <div class="sys-block"><p class="sys-key">Shipped</p><p class="sys-body">${esc(s.shipped)}</p></div>
+      <div class="sys-block broke"><p class="sys-key">Broke</p><p class="sys-body">${esc(s.broke)}</p></div>
+      <div class="chips">${(s.stack || []).map((t) => `<span class="chip">${esc(t)}</span>`).join("")}</div>
+    </article>`).join("");
+}
+
+function renderExperience(d) {
+  $("exp-list").innerHTML = d.experience.map((e) => `
+    <div class="exp-row reveal">
+      <div>
+        <div class="exp-period">${esc(e.period)}</div>
+        <div class="exp-place">${esc(e.place)}</div>
+      </div>
+      <div>
+        <h3 class="exp-role">${esc(e.role)}</h3>
+        <p class="exp-company">${esc(e.company)}</p>
+        ${e.summary ? `<p class="exp-summary">${esc(e.summary)}</p>` : ""}
+        <ul>${e.bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
+      </div>
+    </div>`).join("");
+  $("training-list").innerHTML = d.training.map((t) => `
+    <div>
+      <div class="exp-period">${esc(t.period)}</div>
+      <h3 class="exp-role" style="font-size:15px;">${esc(t.role)} — ${esc(t.company)}</h3>
+      <p class="sys-body">${esc(t.detail)}</p>
+    </div>`).join("");
+}
+
+function renderSkills(d) {
+  $("skill-grid").innerHTML = d.skills.map((g) => `
+    <div class="skill-group">
+      <h3>${esc(g.group)}</h3>
+      <div class="skill-items">${g.items.map((i) => `<span>${esc(i)}</span>`).join("")}</div>
+    </div>`).join("");
+}
+
+function renderCreds(d) {
+  $("edu-list").innerHTML = d.education.map((e) => `
+    <div class="cred-item">
+      <div class="cred-title">${esc(e.degree)}</div>
+      <div class="cred-sub">${esc(e.school)}</div>
+      <div class="cred-sub">${esc(e.period)}${e.note ? " · " + esc(e.note) : ""}</div>
+    </div>`).join("");
+  $("cert-list").innerHTML = d.certifications.map((c) => `<div class="cert">${esc(c)}</div>`).join("");
+  $("lang-list").textContent = d.languages.join(" · ");
+}
+
+/* ---------- console ---------- */
+const PROMPT = "shaidan@nusabyte:~$";
+
+function renderConsole(d) {
+  const body = $("console-body");
+  const input = $("console-input");
+  const history = [];
+  let hIdx = -1;
+
+  const print = (text, cls = "") => {
+    const div = document.createElement("div");
+    div.className = "console-line " + cls;
+    div.innerHTML = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  };
+
+  [
+    `<span class="dim"># Interactive console. Reads resume.json — the same data this page renders.</span>`,
+    `<span class="dim"># Type <b>help</b> for commands, or click a chip below.</span>`,
+    ``,
+  ].forEach((l) => print(l));
+
+  const COMMANDS = {
+    help: () => [
+      `<span class="acc">available commands</span>`,
+      `  <b>whoami</b>          name, role, location`,
+      `  <b>projects</b>        all projects, or filter: <b>projects ai</b>`,
+      `  <b>stack</b>           technologies, by group`,
+      `  <b>experience</b>      nine roles with dates`,
+      `  <b>systems</b>         the flagship systems`,
+      `  <b>proof</b>           measured before/after numbers`,
+      `  <b>certifications</b>  degrees and certs`,
+      `  <b>contact</b>         email, phone, links`,
+      `  <b>cv</b>              open the print CV`,
+      `  <b>clear</b>           clear the screen`,
+      ``,
+      `<span class="dim"># Tab completes. ↑ ↓ walks history. Ctrl+L clears.</span>`,
+    ],
+    whoami: () => [
+      `<span class="ok">${esc(d.name)}</span>`,
+      `${esc(d.role)}`,
+      `${esc(d.location)} · ${esc(d.languages.join(" · "))}`,
+      `Founder, ${esc(d.company.name)} (${esc(d.company.registration)})`,
+    ],
+    projects: (args) => {
+      const filter = (args[0] || "").toLowerCase();
+      const list = filter
+        ? d.projects.filter((p) => p.domain.toLowerCase() === filter ||
+                                  p.name.toLowerCase().includes(filter))
+        : d.projects;
+      if (!list.length) return [`<span class="err">no projects match "${esc(filter)}"</span>`,
+        `<span class="dim">domains: ${[...new Set(d.projects.map((p) => p.domain))].join(", ")}</span>`];
+      const out = [`<span class="acc">${list.length} project${list.length === 1 ? "" : "s"}${filter ? ` matching "${esc(filter)}"` : ""}</span>`];
+      list.forEach((p) => {
+        out.push(`<b>${esc(p.name)}</b> <span class="dim">[${esc(p.domain)} · ${esc(p.state)} · ${esc(p.year)}]</span>`);
+        out.push(`  ${esc(p.blurb)}`);
+        out.push(`  <span class="dim">${(p.stack || []).map(esc).join(" · ")}</span>`);
+      });
+      return out;
+    },
+    stack: () => {
+      const out = [`<span class="acc">technologies</span>`];
+      d.skills.forEach((g) => {
+        out.push(`<b>${esc(g.group)}</b>`);
+        out.push(`  ${g.items.map(esc).join(" · ")}`);
+      });
+      return out;
+    },
+    experience: () => {
+      const out = [`<span class="acc">experience</span>`];
+      d.experience.forEach((e) => {
+        out.push(`<b>${esc(e.role)}</b> — ${esc(e.company)}`);
+        out.push(`  <span class="dim">${esc(e.period)} · ${esc(e.place)}</span>`);
+      });
+      (d.training || []).forEach((t) => out.push(
+        `<span class="dim">training: ${esc(t.role)} — ${esc(t.company)}, ${esc(t.period)}</span>`));
+      return out;
+    },
+    systems: () => {
+      const out = [`<span class="acc">flagship systems</span>`];
+      d.systems.forEach((s) => {
+        out.push(`<b>${esc(s.name)}</b> <span class="dim">[${esc(s.year)}]</span>`);
+        out.push(`  <span class="dim">problem </span>${esc(s.problem)}`);
+        out.push(`  <span class="dim">shipped </span>${esc(s.shipped)}`);
+      });
+      return out;
+    },
+    proof: () => {
+      const out = [`<span class="acc">${esc(d.seoCase.headline)}</span>`];
+      d.seoCase.rows.forEach((r) => {
+        out.push(`  ${esc(r.metric)}  ${String(r.before).padStart(3)} → <span class="ok">${r.after}</span>`);
+        out.push(`    <span class="dim">${esc(r.why)}</span>`);
+      });
+      out.push(`<span class="dim"># ${esc(d.seoCase.note)}</span>`);
+      return out;
+    },
+    certifications: () => [
+      `<span class="acc">certifications</span>`,
+      ...d.certifications.map((c) => `  <span class="ok">▸</span> ${esc(c)}`),
+      ``,
+      `<span class="acc">education</span>`,
+      ...d.education.map((e) => `  <b>${esc(e.degree)}</b> — ${esc(e.school)} <span class="dim">(${esc(e.period)})</span>`),
+    ],
+    contact: () => [
+      `<span class="acc">contact</span>`,
+      `  email    <b>${esc(d.email)}</b>`,
+      `  phone    ${esc(d.phone)}`,
+      `  linkedin ${esc(d.links.linkedin)}`,
+      `  github   ${esc(d.links.github)}`,
+      `  nusabyte ${esc(d.links.nusabyte)}`,
+      `  jebat    ${esc(d.links.jebat)}`,
+    ],
+    cv: () => { window.open("cv.html", "_blank"); return [`<span class="dim"># opening cv.html in a new tab</span>`]; },
+    clear: () => { body.innerHTML = ""; return []; },
+  };
+
+  const run = (raw) => {
+    const cmd = raw.trim();
+    if (!cmd) return;
+    print(`<span class="p">${esc(PROMPT)}</span> ${esc(cmd)}`, "cmd");
+    history.push(cmd); hIdx = history.length;
+    const [name, ...args] = cmd.split(/\s+/);
+    const fn = COMMANDS[name.toLowerCase()];
+    if (fn) fn(args).forEach((l) => print(l));
+    else print(`<span class="err">command not found: ${esc(name)}</span> <span class="dim">— try <b>help</b></span>`);
+  };
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") { run(input.value); input.value = ""; }
+    else if (e.key === "ArrowUp") { e.preventDefault(); if (hIdx > 0) input.value = history[--hIdx] || ""; }
+    else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (hIdx < history.length - 1) input.value = history[++hIdx] || "";
+      else { hIdx = history.length; input.value = ""; }
+    }
+    else if (e.key === "Tab") {
+      e.preventDefault();
+      const hit = Object.keys(COMMANDS).find((n) => n.startsWith(input.value.trim().toLowerCase()));
+      if (hit) input.value = hit;
+    }
+    else if (e.key === "l" && e.ctrlKey) { e.preventDefault(); body.innerHTML = ""; }
+  });
+
+  [["help"], ["projects ai"], ["systems"], ["proof"], ["stack"], ["experience"], ["contact"]]
+    .forEach(([c]) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.dataset.cmd = c; b.textContent = c;
+      b.addEventListener("click", () => { run(c); input.focus(); });
+      $("console-chips").appendChild(b);
+    });
+
+  // "/" jumps to the console, unless the user is already typing.
+  document.addEventListener("keydown", (e) => {
+    const t = e.target.tagName;
+    if (t === "INPUT" || t === "TEXTAREA") return;
+    if (e.key === "/") { e.preventDefault(); input.focus(); }
+  });
+}
+
+/* ---------- copy email ---------- */
+document.addEventListener("click", (e) => {
+  if (e.target.id !== "copy-email") return;
+  const btn = e.target;
+  const done = () => { btn.textContent = "copied"; setTimeout(() => { btn.textContent = "copy"; }, 1600); };
+  const text = $("contact-email").textContent;
+  if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, () => fallbackCopy(text, done));
+  else fallbackCopy(text, done);
+});
+function fallbackCopy(text, done) {
+  const ta = document.createElement("textarea");
+  ta.value = text; document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); } catch (_) {}
+  document.body.removeChild(ta); done();
+}
+
+/* ---------- reveal + scrollspy ---------- */
+function initReveal() {
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+}
+
+function initScrollSpy() {
+  const links = [...document.querySelectorAll("#nav-links a")];
+  const map = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      links.forEach((a) => a.classList.remove("active"));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add("active");
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  map.forEach((_, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+}
 </script>
 
 </body>

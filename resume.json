@@ -246,5 +246,198 @@
     "name": "NusaByte IT Solutions",
     "registration": "SSM 202603010679",
     "trading": "Trading since December 2024, full-time through 2025"
-  }
+  },
+  "seoCase": {
+    "client": "nusabyte.my",
+    "headline": "One client site, one audit cycle, four dimensions moved.",
+    "note": "Measured by the search-readiness engine before and after the fixes. The numbers are the engine's own output, not an estimate.",
+    "rows": [
+      { "metric": "E-E-A-T", "before": 66, "after": 100, "why": "Author byline, bio, and OWASP citation on the claim that actually comes from OWASP" },
+      { "metric": "AI-SEO", "before": 90, "after": 100, "why": "Structured data completed across every indexable surface" },
+      { "metric": "GEO / AEO", "before": 31, "after": 80, "why": "Answer-engine readiness: direct answers, entity clarity, machine-readable schema" },
+      { "metric": "Overall", "before": 87, "after": 98, "why": "Roll-up across all ten scored dimensions" }
+    ]
+  },
+  "projects": [
+    {
+      "name": "JEBAT CENTRIX",
+      "blurb": "19 specialist agents behind one interface. Natural-language routing, parallel fan-out, weighted dispatch, mandatory approval on anything outbound or destructive. Multi-provider LLM routing with automatic failover.",
+      "domain": "AI",
+      "stack": ["Python", "FastAPI", "PostgreSQL", "Redis", "WebSockets", "MCP", "Docker"],
+      "state": "Live",
+      "year": "2026",
+      "flag": true
+    },
+    {
+      "name": "WhatsApp sales desk",
+      "blurb": "Inbound message → intent and urgency triage → auto-drafted quotation into a live ledger → weighted dispatch. Deterministic fallback when the model degrades; replies recorded before delivery so a gateway outage cannot lose an operator's work.",
+      "domain": "AI",
+      "stack": ["Python", "FastAPI", "PostgreSQL (RLS)", "Groq", "Docker"],
+      "state": "Live",
+      "year": "2026",
+      "flag": true
+    },
+    {
+      "name": "Search-readiness engine",
+      "blurb": "1,200+ lines scoring a site across ten dimensions — technical SEO, E-E-A-T, AI-answer-engine readiness, structured data, programmatic SEO. Free scan → priced, phased scope → routed to the owning agent.",
+      "domain": "AI",
+      "stack": ["Next.js", "TypeScript", "Node.js", "Traefik", "systemd"],
+      "state": "Live",
+      "year": "2026",
+      "flag": true
+    },
+    {
+      "name": "NusaByte IT Solutions",
+      "blurb": "The practice. Sole principal from scoping through security, source handed to the client. Live ledger of RM 200,660, MyInvois integration, canary deploy with automatic rollback.",
+      "domain": "Platform",
+      "stack": ["Next.js", "TypeScript", "PostgreSQL", "Traefik", "Docker"],
+      "state": "Live",
+      "year": "2024",
+      "flag": true
+    },
+    {
+      "name": "Tunas POS",
+      "blurb": "Monorepo POS across six apps — api, pos, merchant, consumer, portal, worker. Provider-authority payment rail: no digital success without provider evidence, signed webhook intake.",
+      "domain": "Commerce",
+      "stack": ["Turbo", "Hono", "Drizzle", "Zod", "React", "Vite", "PostgreSQL", "NATS"],
+      "state": "Active",
+      "year": "2026"
+    },
+    {
+      "name": "SME OS",
+      "blurb": "Owner workspace for small businesses: React 19 front end, FastAPI backend, everything an SME needs to run without buying six subscriptions.",
+      "domain": "Commerce",
+      "stack": ["React 19", "Vite", "Tailwind", "TypeScript", "FastAPI", "Vitest"],
+      "state": "Active",
+      "year": "2026"
+    },
+    {
+      "name": "evolvepayboost-web",
+      "blurb": "Payment-boost platform with a realtime dashboard — live updates over Socket.IO, Prisma data layer, TanStack Query cache, Recharts reporting.",
+      "domain": "Commerce",
+      "stack": ["React", "Vite", "Express", "Prisma", "Zustand", "Socket.IO", "Recharts"],
+      "state": "Active",
+      "year": "2026"
+    },
+    {
+      "name": "cetaktshirt-web v2",
+      "blurb": "Sublimation landing page plus an operator dashboard — order flow, production state, and reporting in one Next.js app.",
+      "domain": "Commerce",
+      "stack": ["Next.js", "React", "Tailwind", "Prisma", "Recharts", "Zod"],
+      "state": "Live",
+      "year": "2026"
+    },
+    {
+      "name": "BaaniyaraQPOS / ErawanQPOS",
+      "blurb": "Two POS deployments on one codebase pattern — terminal, merchant console, and offline-tolerant sync.",
+      "domain": "Commerce",
+      "stack": ["TypeScript", "React", "PostgreSQL"],
+      "state": "Active",
+      "year": "2026"
+    },
+    {
+      "name": "Vendor Portal",
+      "blurb": "Client vendor portal at proposal stage — onboarding, document exchange, and a 12-week delivery plan (4 weeks go-live, 8 weeks UAT).",
+      "domain": "Commerce",
+      "stack": ["Next.js", "React", "Tailwind", "TypeScript"],
+      "state": "Proposal",
+      "year": "2026"
+    },
+    {
+      "name": "penguinpath",
+      "blurb": "Learn Linux before you install it. A self-hosted, Neovim-inspired LMS where the terminal is the classroom — every lesson is a real shell session.",
+      "domain": "Product",
+      "stack": ["Next.js", "React", "Tailwind", "TypeScript", "Zod"],
+      "state": "Live",
+      "year": "2025"
+    },
+    {
+      "name": "prodigylearning-lms",
+      "blurb": "Web LMS with course authoring, progress tracking, and analytics dashboards for instructors.",
+      "domain": "Product",
+      "stack": ["React", "Vite", "Tailwind", "TypeScript", "Framer Motion", "Recharts"],
+      "state": "Shipped",
+      "year": "2025"
+    },
+    {
+      "name": "wirasiber-academy",
+      "blurb": "Cybersecurity training as an online RPG. Players work through attack and defence scenarios that map to real certification objectives.",
+      "domain": "Security",
+      "stack": ["React", "Vite", "Tailwind", "TypeScript", "Express"],
+      "state": "Live",
+      "year": "2026"
+    },
+    {
+      "name": "ThreatWatch-AI",
+      "blurb": "Browser extension that flags malicious destinations before you load them, backed by production threat endpoints.",
+      "domain": "Security",
+      "stack": ["JavaScript", "Browser Extension", "Threat Intel API"],
+      "state": "Live",
+      "year": "2026"
+    },
+    {
+      "name": "kawal-ai",
+      "blurb": "A cybersecurity approach built for SMEs — the controls that actually matter, priced so a small business can afford them.",
+      "domain": "Security",
+      "stack": ["TypeScript", "React"],
+      "state": "Live",
+      "year": "2025"
+    },
+    {
+      "name": "open-reverselab + rea MCP",
+      "blurb": "Reverse-engineering lab exposing 140 MCP tools over Ghidra, rizin, Burp, Frida, and procmon. Static and runtime analysis in one interface.",
+      "domain": "Security",
+      "stack": ["Python", "MCP", "Ghidra", "rizin", "Frida", "Docker"],
+      "state": "Live",
+      "year": "2026"
+    },
+    {
+      "name": "redteam-ctf",
+      "blurb": "CTF platform with challenge delivery, flag validation, and scoring.",
+      "domain": "Security",
+      "stack": ["TypeScript", "Zod", "React"],
+      "state": "Live",
+      "year": "2026"
+    },
+    {
+      "name": "hermes-agent-jebatcore",
+      "blurb": "The control room: 27 agent definitions, each with its own runbook, allowed/forbidden list, and approval gates. The discipline is the product.",
+      "domain": "Platform",
+      "stack": ["Python", "Shell", "Docker", "Traefik"],
+      "state": "Live",
+      "year": "2026"
+    },
+    {
+      "name": "jebatcore-cli",
+      "blurb": "Unified multi-provider coding-agent CLI with profiles for Codex, OpenAI, Gemini, and Ollama. Dormant since April 2026.",
+      "domain": "Platform",
+      "stack": ["React", "TypeScript", "Zod", "TUI"],
+      "state": "Dormant",
+      "year": "2026"
+    },
+    {
+      "name": "nb-* toolchain",
+      "blurb": "In-house ops CLIs — bus, seo, ledger, invoicing, Threads and LinkedIn publishing, profile state. Python 3 standard library only, no dependency surface to audit.",
+      "domain": "Platform",
+      "stack": ["Python 3 stdlib"],
+      "state": "Live",
+      "year": "2026"
+    },
+    {
+      "name": "ALAND-Production",
+      "blurb": "Client production application, actively maintained.",
+      "domain": "Client",
+      "stack": ["TypeScript"],
+      "state": "Active",
+      "year": "2026"
+    },
+    {
+      "name": "Vendor & client delivery line",
+      "blurb": "Thirty-plus shipped engagements: LMS, POS, listings, law firm, property, GPS tracking, print, F&B, automotive. Same delivery discipline, different verticals.",
+      "domain": "Client",
+      "stack": ["Next.js", "React", "Vite", "TypeScript", "PostgreSQL"],
+      "state": "Shipped",
+      "year": "2017–2026"
+    }
+  ]
 }
