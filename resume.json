@@ -1,0 +1,250 @@
+{
+  "name": "Shaidan Shaari Bin Abd Rasep",
+  "shortName": "Shaidan Shaari",
+  "role": "Infrastructure & Security Engineer turned AI Systems Builder",
+  "location": "Petaling Jaya, Selangor, Malaysia",
+  "email": "shaidanshaari@gmail.com",
+  "phone": "+6011 7016 2506",
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/shaidanshaari",
+    "github": "https://github.com/nusabyte-my",
+    "nusabyte": "https://nusabyte.my",
+    "jebat": "https://jebat.online"
+  },
+  "summary": [
+    "I started in the server room. Ten-plus years ago it was AIX boxes, Cisco switches and VLANs at IBM Malaysia — 50+ servers, 99.9% uptime, and the particular humility that comes from being on call when a box stops answering. Then a co-founded e-commerce business doing RM 500K a year, where the same discipline met marketing budgets and 4:1 ad ROI.",
+    "Now I build AI systems — and I still operate the infrastructure underneath them. That's the part most AI work skips. When you've spent a decade accountable for uptime, you build differently: you think about blast radius, rollback strategy, and why an approval gate exists before the automation does something you cannot undo."
+  ],
+  "stats": [
+    { "value": "19", "label": "agents in production", "detail": "JEBAT CENTRIX — specialist fleet behind one interface" },
+    { "value": "99.9%", "label": "uptime held at IBM", "detail": "50+ AIX/P-Series servers, proactive CLI and HMC maintenance" },
+    { "value": "RM 500K+", "label": "annual e-commerce revenue", "detail": "Einaq Baby Carrier, to RM 500K/yr in two years at 4:1 ad ROI" },
+    { "value": "50+", "label": "VLANs at Fortune 500 SLA", "detail": "IBM resident engineer, multi-tiered Cisco networks" },
+    { "value": "10+", "label": "years in production systems", "detail": "helpdesk → server room → agent systems" },
+    { "value": "3", "label": "certifications held", "detail": "CEH, AI Enterprise Lead Implementor, GenBIZ AI Professional" }
+  ],
+  "capabilities": [
+    {
+      "title": "AI systems that ship",
+      "body": "Multi-agent orchestration, LLM routing with failover, approval gates, human-in-the-loop UX. The fleet that runs NusaByte is 19 specialists with scopes, not one general assistant — a mis-route is visible instead of silently wrong."
+    },
+    {
+      "title": "Automation that holds",
+      "body": "Workflows with a deterministic fallback when the model is unavailable, and an audit trail of who approved what. Record-then-send, so a transport outage can never destroy an operator's work."
+    },
+    {
+      "title": "Infrastructure I maintain",
+      "body": "Linux, Docker, systemd, PM2, Traefik, PostgreSQL, canary deploys with automated rollback. I still own the servers the agents run on, which is why the agents are boring in the ways that matter."
+    },
+    {
+      "title": "Security as a default",
+      "body": "Certified Ethical Hacker. Wazuh SIEM, OSSEC, WAF on the OWASP Top 10 rule set, full mail authentication (SPF/DKIM/DMARC), scoped service keys so machine callers never hold admin credentials."
+    }
+  ],
+  "systems": [
+    {
+      "name": "JEBAT CENTRIX",
+      "kind": "19-agent AI operations fleet",
+      "year": "2026",
+      "stack": ["Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL", "Docker", "Telegram API"],
+      "problem": "Inbound enquiries needed triage, quoting, and assignment across a team, done manually and inconsistently.",
+      "approach": "Nineteen specialists behind one natural-language front door rather than one general assistant. Each agent has a scope, so a mis-route is visible instead of silently wrong. Rejected a single mega-prompt — it had no way to express \"this question is outside what I know.\"",
+      "shipped": "Live. Natural-language routing, parallel fan-out across independent workstreams, weighted dispatch, per-call cost and usage instrumentation, and mandatory approval on anything outbound or destructive.",
+      "broke": "A bot token was revoked and polling died with an error that named no cause — \"no adapter available\". The real fault was a plugin timeout of 10 seconds against a provider that needed longer to warm up. Raised it to 120 and documented why, because the fast default was only ever fast for local responses. Provider 429s under repeated load now degrade with an explicit retry message rather than a confident wrong answer."
+    },
+    {
+      "name": "WhatsApp sales desk",
+      "kind": "Inbound → quotation → dispatch",
+      "year": "2026",
+      "stack": ["WhatsApp Cloud API", "Python", "PostgreSQL", "Groq"],
+      "problem": "Enquiries arrived by WhatsApp with no consistent triage, and quotations lived in someone's head.",
+      "approach": "Inbound → intent, entity and urgency triage → auto-drafted quotation written into a live ledger → weighted round-robin dispatch. Two decisions worth defending: triage is model-assisted but has a deterministic rule fallback, so it degrades instead of failing; and replies are recorded before delivery is attempted, so a gateway outage can never destroy an operator's work.",
+      "shipped": "Live with approval gating. Transport is pluggable — official Cloud API or a self-hosted gateway — behind one interface, so the channel can change without touching business logic.",
+      "broke": "Triage failed silently for a while. Duplicate config lines had concatenated two valid keys into one invalid 112-character string, and the configured model had been retired from the provider. The 404 said nothing about the key."
+    },
+    {
+      "name": "Search-readiness engine",
+      "kind": "SEO / GEO scoring platform",
+      "year": "2026",
+      "stack": ["Next.js App Router", "TypeScript", "Node.js", "Traefik", "systemd"],
+      "problem": "Clients had no defensible way to know whether their site would survive an AI-answer-engine world, and no route from a diagnosis to paid work.",
+      "approach": "Score a site across ten dimensions — technical SEO, E-E-A-T signals, AI-answer-engine readiness, structured data, programmatic SEO — then turn the score into a priced, phased scope routed to the agent that owns each workstream. Free scan in, priced scope out.",
+      "shipped": "1,200+ line engine, live. Drove one client's E-E-A-T score 66 → 100, AI-SEO 90 → 100, GEO 31 → 80, overall 87 → 98.",
+      "broke": "Found a class of production defect where the build shipped stale prerendered pages — source right, production wrong, and nothing in the pipeline capable of saying so. Fixed at the source: the build now deletes its own output first, and -SkipBuild warns when packaged prerenders predate the source they came from. Also found `npm run build` had never worked inside the deploy script — npm's PowerShell shim dies in that context, so every \"successful\" deploy had quietly avoided it."
+    },
+    {
+      "name": "Einaq Baby Carrier",
+      "kind": "Co-founded e-commerce platform",
+      "year": "2017 – 2024",
+      "stack": ["WooCommerce", "WordPress", "AWS EC2", "Google Data Studio"],
+      "problem": "A physical product business with no digital channel and a marketing budget that had to justify itself monthly.",
+      "approach": "Built and ran the whole platform: storefront, payments, production workflow, paid acquisition, and the reporting that told us which of those were working.",
+      "shipped": "RM 500K+ annual revenue within two years, 4:1 ad ROI, 80% of sales through digital marketing, 25% material waste reduction and RM 50K annual cost cuts from workflow changes.",
+      "broke": "Cloud-based server monitoring on AWS EC2 replaced guessing about whether the store was up — it eliminated the bulk of the downtime we'd previously only learned about from customers."
+    }
+  ],
+  "experience": [
+    {
+      "role": "IT Specialist & Solutions Consultant",
+      "company": "nusabyte.my (own startup)",
+      "period": "Dec 2024 – Present",
+      "place": "Petaling Jaya, Selangor",
+      "summary": "Enterprise web development, custom software, AI automation, and search infrastructure. Sole principal — scoping through design, build, infrastructure, and security, with source code handed to the client.",
+      "bullets": [
+        "Design and implement scalable IT infrastructure: cloud services, server management, and network configuration.",
+        "Build custom web and e-commerce platforms (WordPress/WooCommerce; Next.js for platform work), delivering measurable ROI gains for clients.",
+        "Lead technical troubleshooting and root cause analysis for complex incidents, holding minimal downtime.",
+        "Conduct IT assessments and deliver detailed reports with actionable recommendations."
+      ]
+    },
+    {
+      "role": "Co-Founder & Operations Manager",
+      "company": "Einaq Baby Carrier",
+      "period": "2017 – Dec 2024",
+      "place": "Petaling Jaya, Selangor",
+      "bullets": [
+        "Established a full-scale e-commerce platform on WooCommerce, driving RM 500K+ annual revenue within two years.",
+        "Optimised production workflows, reducing material waste by 25% and cutting costs by RM 50K annually.",
+        "Led Facebook and Google Ads campaigns achieving 4:1 ROI, with 80% of sales generated through digital marketing.",
+        "Cloud-based server monitoring on AWS EC2, improving site performance and eliminating the bulk of downtime."
+      ]
+    },
+    {
+      "role": "Freelance Web Developer & Designer",
+      "company": "Shahrin Baraqah Resources",
+      "period": "Jan 2023 – Dec 2024",
+      "place": "Remote",
+      "bullets": [
+        "Designed 20+ responsive WordPress sites on Elementor, increasing client engagement by 60% through SEO optimisation.",
+        "Integrated WooCommerce for 12+ clients, driving 45% growth in online sales within six months.",
+        "24/7 remote technical support at 95% uptime, resolving server and security issues within two hours.",
+        "Automated client reporting through Google Data Studio, saving 15 hours of manual work per month."
+      ]
+    },
+    {
+      "role": "IT System Administrator Executive",
+      "company": "IBM Malaysia Sdn Bhd",
+      "period": "Oct 2015 – Apr 2017",
+      "place": "Damansara, Selangor",
+      "bullets": [
+        "Managed 50+ AIX/P-Series servers at 99.9% uptime through proactive CLI and HMC maintenance.",
+        "Reduced security exposure by 35% through quarterly firmware updates and OS patching.",
+        "Automated backup processes with shell scripting, saving 20 hours of manual intervention per month.",
+        "Trained and mentored 3 junior engineers in AIX server management and disaster recovery."
+      ]
+    },
+    {
+      "role": "Resident Engineer (Infrastructure IT)",
+      "company": "IBM Malaysia Sdn Bhd",
+      "period": "Jan 2015 – Oct 2015",
+      "place": "Shah Alam, Selangor",
+      "bullets": [
+        "Managed multi-tiered Cisco networks across 50+ VLANs at 100% SLA compliance for Fortune 500 clients.",
+        "Overhauled Active Directory policies, improving user access management efficiency by 30%.",
+        "Cut server downtime 25% through optimised patching schedules and preventive maintenance."
+      ]
+    },
+    {
+      "role": "Technical Support Executive L1/L2",
+      "company": "Aegis BPO (M) Sdn Bhd",
+      "period": "May 2014 – Jan 2015",
+      "place": "Damansara, Selangor",
+      "bullets": [
+        "Managed 120+ technical cases monthly at 98% first-call resolution for StarHub customers.",
+        "Authored 15+ troubleshooting guides, cutting L3 escalations by 20%.",
+        "Trained 5 new hires on remote diagnostic tooling, improving team efficiency by 15%."
+      ]
+    },
+    {
+      "role": "AV/IT Specialist",
+      "company": "Digital Magic Solutions Sdn Bhd",
+      "period": "May 2013 – Dec 2013",
+      "place": "Damansara, Selangor",
+      "bullets": [
+        "Led IT/AV installations for 8 major experiential media projects, all delivered under budget.",
+        "Produced network diagrams in Visio and provided remote post-installation support, resolving 85% of client issues."
+      ]
+    },
+    {
+      "role": "IT Helpdesk Support Analyst",
+      "company": "Computer Science Corporation (CSC)",
+      "period": "Sep 2012 – May 2013",
+      "place": "Petaling Jaya, Selangor",
+      "bullets": [
+        "Supported 500+ employees via Citrix and VPN, resolving 90% of tickets within SLA.",
+        "Automated ticket categorisation in ServiceNow and built a 50+ article knowledge base, cutting repeat queries."
+      ]
+    },
+    {
+      "role": "IT Support Executive",
+      "company": "World Of Sport (M) Sdn Bhd",
+      "period": "Jun 2011 – Aug 2012",
+      "place": "Cheras, Selangor",
+      "bullets": [
+        "Managed POS systems across 15 retail outlets and migrated legacy databases to SQL, improving report generation speed by 50%."
+      ]
+    }
+  ],
+  "training": [
+    {
+      "role": "Trainee, Full Stack AI Development",
+      "company": "Gamuda AI Academy",
+      "period": "Sep 2025 – Nov 2025",
+      "detail": "Full-stack programme covering React and Vue front-ends with Node.js and Python back-ends, plus machine learning and LLM integration for marketing automation and customer personalisation."
+    }
+  ],
+  "skills": [
+    {
+      "group": "AI & agents",
+      "items": ["Multi-agent orchestration", "Agent delegation and parallel fan-out", "LLMs and LLM routing with failover", "GenAI integration", "AI-driven business optimisation", "Prompt and evaluation design", "Structured outputs", "Human-in-the-loop approval gates"]
+    },
+    {
+      "group": "Languages & web",
+      "items": ["TypeScript", "JavaScript", "Node.js", "Python", "React", "Next.js (App Router, standalone output)", "REST API design", "HTML", "CSS", "Vue"]
+    },
+    {
+      "group": "Infrastructure & cloud",
+      "items": ["System administration", "Server management", "CloudOps", "AWS EC2", "VMware", "Linux", "AIX", "Windows Server", "HMC", "CLI", "Shell scripting", "PowerShell", "ServiceNow"]
+    },
+    {
+      "group": "Networking & security",
+      "items": ["Cisco networks", "VLANs", "TCP/IP", "Active Directory", "VPN", "Vulnerability assessment", "Penetration testing", "Wazuh SIEM", "OSSEC", "WAF (OWASP Top 10)", "SPF/DKIM/DMARC", "SLA management", "Root cause analysis"]
+    },
+    {
+      "group": "Databases",
+      "items": ["SQL", "Database migration", "Data analytics", "PostgreSQL"]
+    },
+    {
+      "group": "Search & growth",
+      "items": ["Technical SEO", "E-E-A-T", "AI-answer-engine readiness (GEO/AEO)", "schema.org / JSON-LD", "Programmatic SEO", "Core Web Vitals", "WordPress", "WooCommerce", "Google Ads", "Facebook Ads", "Sales funnels", "Google Data Studio"]
+    },
+    {
+      "group": "Platform",
+      "items": ["Docker", "PM2", "Traefik", "systemd", "Canary deployment with automated rollback"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Information Technology (Honours)",
+      "school": "Malaysia University of Science and Technology (MUST)",
+      "period": "Mar 2025 – Present (expected Dec 2028)",
+      "note": "Pursuing under APEL (Accreditation of Prior Experiential Learning)."
+    },
+    {
+      "degree": "Bachelor of Information Technology with Honours",
+      "school": "Open University Malaysia",
+      "period": "Graduated 2015"
+    }
+  ],
+  "certifications": [
+    "Certified Ethical Hacker (CEH) — earned",
+    "Certified Lead Implementor for AI Enterprise",
+    "GenBIZ AI Certified Professional"
+  ],
+  "languages": ["English (professional)", "Bahasa Malaysia (native)"],
+  "company": {
+    "name": "NusaByte IT Solutions",
+    "registration": "SSM 202603010679",
+    "trading": "Trading since December 2024, full-time through 2025"
+  }
+}

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shaidan Shaari — Infrastructure &amp; Security Engineer turned AI Systems Builder</title>
+<meta name="description" content="Shaidan Shaari — infrastructure and security engineer turned AI systems builder. 10+ years across IBM, e-commerce and applied AI. Operates JEBAT CENTRIX, a 19-agent production fleet. Founder of NusaByte IT Solutions." />
+<meta name="author" content="Shaidan Shaari Bin Abd Rasep" />
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Shaidan Shaari — Infrastructure &amp; Security Engineer turned AI Systems Builder" />
+<meta property="og:description" content="10+ years of production systems accountability, now applied to agent AI. 19-agent production fleet. CEH-certified. Founder of NusaByte." />
+<meta property="og:url" content="https://nusabyte-my.github.io/shaidan-portfolio/" />
+<meta name="theme-color" content="#030303" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23030303'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' fill='%2322d3ee' text-anchor='middle'%3ESS%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Shaidan Shaari Bin Abd Rasep",
+  "alternateName": "Shaidan Shaari",
+  "jobTitle": "Founder & Principal Engineer",
+  "description": "Infrastructure and security engineer turned AI systems builder. Operates JEBAT CENTRIX, a 19-agent production fleet.",
+  "email": "shaidanshaari@gmail.com",
+  "telephone": "+601170162506",
+  "address": { "@type": "PostalAddress", "addressLocality": "Petaling Jaya", "addressRegion": "Selangor", "addressCountry": "MY" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Open University Malaysia" },
+    { "@type": "CollegeOrUniversity", "name": "Malaysia University of Science and Technology" }
+  ],
+  "worksFor": { "@type": "Organization", "name": "NusaByte IT Solutions" },
+  "hasCredential": [
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Certified Ethical Hacker (CEH)" },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "Certified Lead Implementor for AI Enterprise" },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "GenBIZ AI Certified Professional" }
+  ],
+  "knowsAbout": ["Multi-agent orchestration", "AI automation", "LLM routing", "Technical SEO", "GEO/AEO", "Cybersecurity", "Penetration testing", "AIX", "Linux administration", "Docker", "Next.js", "TypeScript", "PostgreSQL"],
+  "sameAs": [
+    "https://www.linkedin.com/in/shaidanshaari",
+    "https://github.com/nusabyte-my",
+    "https://nusabyte.my",
+    "https://jebat.online"
+  ],
+  "url": "https://nusabyte-my.github.io/shaidan-portfolio/"
+}
+</script>
+<style>
+  /* Stealth-Dark Tactical. No external requests except the font CDN.
+     CRT scanlines are a fixed overlay at 3% opacity — cheap, no repaint cost. */
+  :root {
+    --ink: #030303;
+    --surface: #0a0b0e;
+    --raised: #101217;
+    --border: #1a1d24;
+    --text: #e6e9ef;
+    --dim: #8b929e;
+    --faint: #5a616d;
+    --cyan: #22d3ee;
+    --purple: #a855f7;
+    --amber: #f59e0b;
+    --green: #34d399;
+    --display: "Space Grotesk", "Inter", system-ui, sans-serif;
+    --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+    --max: 1080px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font: 16px/1.65 var(--body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Faint CRT scanline field. Pure decoration, pointer-transparent. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.022) 0px,
+      rgba(255, 255, 255, 0.022) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
+
+  ::selection { background: rgba(34, 211, 238, 0.28); color: #fff; }
+
+  a { color: var(--cyan); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(3, 3, 3, 0.86);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .brand {
+    font: 600 15px var(--display);
+    letter-spacing: 0.02em;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-dot {
+    width: 8px; height: 8px;
+    background: var(--cyan);
+    box-shadow: 0 0 10px var(--cyan);
+  }
+  nav ul {
+    display: flex;
+    gap: 26px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font: 500 13px var(--body);
+  }
+  nav ul a { color: var(--dim); }
+  nav ul a:hover { color: var(--cyan); text-decoration: none; }
+  @media (max-width: 720px) { nav ul { display: none; } }
+
+  /* ---------- hero ---------- */
+  header {
+    padding: 88px 0 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Two soft radial washes — cyan upper-left, purple lower-right. */
+  header::before {
+    content: "";
+    position: absolute;
+    top: -30%; left: -10%;
+    width: 60%; height: 90%;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.09), transparent 68%);
+    pointer-events: none;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    bottom: -40%; right: -10%;
+    width: 55%; height: 90%;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.08), transparent 68%);
+    pointer-events: none;
+  }
+  .eyebrow {
+    font: 500 12px var(--mono);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin: 0 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 34px;
+    height: 1px;
+    background: var(--cyan);
+  }
+  h1 {
+    font: 700 clamp(34px, 6.2vw, 62px) / 1.06 var(--display);
+    letter-spacing: -0.025em;
+    margin: 0 0 8px;
+    max-width: 16ch;
+  }
+  h1 .grad {
+    background: linear-gradient(100deg, var(--cyan), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-role {
+    font: 500 clamp(15px, 2.1vw, 19px) var(--body);
+    color: var(--dim);
+    margin: 0 0 30px;
+    max-width: 56ch;
+  }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    font: 600 13.5px var(--body);
+    padding: 11px 20px;
+    border: 1px solid var(--border);
+    background: var(--raised);
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .btn:hover { border-color: var(--cyan); text-decoration: none; background: rgba(34, 211, 238, 0.07); }
+  .btn-primary {
+    background: linear-gradient(100deg, rgba(34, 211, 238, 0.16), rgba(168, 85, 247, 0.16));
+    border-color: rgba(34, 211, 238, 0.42);
+    color: #fff;
+  }
+  .hero-meta {
+    margin-top: 34px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    font: 400 13px var(--mono);
+    color: var(--faint);
+  }
+  .hero-meta b { color: var(--dim); font-weight: 500; }
+
+  /* ---------- sections ---------- */
+  section { padding: 68px 0; border-top: 1px solid var(--border); }
+  .sec-head { margin-bottom: 40px; }
+  .sec-num {
+    font: 500 11.5px var(--mono);
+    color: var(--amber);
+    letter-spacing: 0.2em;
+    margin: 0 0 10px;
+  }
+  h2 {
+    font: 700 clamp(25px, 3.6vw, 36px) / 1.15 var(--display);
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+  .sec-sub { color: var(--dim); margin: 0; max-width: 66ch; font-size: 15px; }
+
+  /* ---------- stats ---------- */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(178px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .stat { background: var(--surface); padding: 22px 20px; }
+  .stat-value {
+    font: 700 31px var(--display);
+    letter-spacing: -0.03em;
+    background: linear-gradient(100deg, var(--cyan), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.1;
+  }
+  .stat-label { font: 600 12.5px var(--body); color: var(--text); margin-top: 7px; }
+  .stat-detail { font: 400 11.5px var(--mono); color: var(--faint); margin-top: 5px; line-height: 1.5; }
+
+  /* ---------- about ---------- */
+  .about-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 46px; }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .about-grid p { color: #c3c9d4; font-size: 15.5px; }
+  .about-grid p:first-child { margin-top: 0; }
+  .about-grid p:last-child { margin-bottom: 0; }
+  .caps { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); align-self: start; }
+  .cap { background: var(--surface); padding: 16px 18px; }
+  .cap-title { font: 600 13.5px var(--display); color: var(--cyan); margin: 0 0 5px; }
+  .cap-body { font: 400 12.8px var(--body); color: var(--dim); margin: 0; line-height: 1.58; }
+
+  /* ---------- systems ---------- */
+  .systems { display: flex; flex-direction: column; gap: 22px; }
+  .system {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 26px 28px;
+    position: relative;
+    transition: border-color 0.18s;
+  }
+  .system:hover { border-color: #2b3140; }
+  .system-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .system-name { font: 700 21px var(--display); letter-spacing: -0.015em; margin: 0; }
+  .system-kind { font: 500 12.5px var(--mono); color: var(--amber); margin: 4px 0 0; }
+  .system-year { font: 500 12px var(--mono); color: var(--faint); }
+  .sys-block { margin-bottom: 15px; }
+  .sys-block:last-of-type { margin-bottom: 0; }
+  .sys-key {
+    font: 500 10.5px var(--mono);
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin: 0 0 5px;
+  }
+  .sys-body { font-size: 14.2px; color: #bcc3cf; margin: 0; }
+  .sys-block.broke .sys-key { color: var(--amber); }
+  .sys-block.broke .sys-body { color: #a9b1bd; font-size: 13.6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .chip {
+    font: 500 11px var(--mono);
+    color: var(--dim);
+    border: 1px solid var(--border);
+    background: var(--raised);
+    padding: 3px 9px;
+  }
+
+  /* ---------- experience ---------- */
+  .exp { display: flex; flex-direction: column; }
+  .exp-row {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 30px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-row:first-child { padding-top: 0; }
+  .exp-row:last-child { border-bottom: 0; padding-bottom: 0; }
+  @media (max-width: 760px) { .exp-row { grid-template-columns: 1fr; gap: 10px; } }
+  .exp-period { font: 500 12.5px var(--mono); color: var(--cyan); }
+  .exp-place { font: 400 11.5px var(--mono); color: var(--faint); margin-top: 4px; }
+  .exp-role { font: 600 17px var(--display); margin: 0 0 3px; letter-spacing: -0.01em; }
+  .exp-company { font: 500 13.5px var(--body); color: var(--dim); margin: 0 0 12px; }
+  .exp-summary { font-size: 14px; color: #bcc3cf; margin: 0 0 12px; }
+  .exp-row ul { margin: 0; padding-left: 18px; }
+  .exp-row li { font-size: 13.8px; color: #b0b8c4; margin-bottom: 6px; }
+  .exp-row li:last-child { margin-bottom: 0; }
+
+  /* ---------- skills ---------- */
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(288px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .skill-group { background: var(--surface); padding: 20px 22px; }
+  .skill-group h3 {
+    font: 600 13px var(--display);
+    color: var(--cyan);
+    margin: 0 0 12px;
+    letter-spacing: 0.01em;
+  }
+  .skill-items { display: flex; flex-wrap: wrap; gap: 5px; }
+  .skill-items span {
+    font: 400 11.5px var(--mono);
+    color: var(--dim);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    background: var(--raised);
+  }
+
+  /* ---------- creds ---------- */
+  .creds { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+  .cred-card { border: 1px solid var(--border); background: var(--surface); padding: 22px 24px; }
+  .cred-card h3 { font: 600 14px var(--display); margin: 0 0 16px; color: var(--amber); }
+  .cred-item { padding: 11px 0; border-bottom: 1px solid var(--border); }
+  .cred-item:last-child { border-bottom: 0; padding-bottom: 0; }
+  .cred-title { font: 600 13.5px var(--body); color: var(--text); }
+  .cred-sub { font: 400 12px var(--mono); color: var(--faint); margin-top: 3px; }
+  .cert {
+    font: 500 13px var(--body);
+    color: #bcc3cf;
+    padding: 8px 0 8px 20px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .cert:last-child { border-bottom: 0; }
+  .cert::before { content: "▸"; position: absolute; left: 0; color: var(--green); font-size: 11px; }
+
+  /* ---------- contact ---------- */
+  #contact { text-align: center; padding: 84px 0; }
+  #contact h2 { margin-left: auto; margin-right: auto; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 30px; }
+  .contact-lines {
+    margin-top: 32px;
+    font: 400 13px var(--mono);
+    color: var(--faint);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 26px 0;
+    font: 400 12px var(--mono);
+    color: var(--faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="brand-dot"></span>SHAIDAN SHAARI</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#systems">Systems</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <p class="eyebrow">Infrastructure &amp; Security → Agent Systems</p>
+    <h1>A decade of uptime,<br /><span class="grad">now applied to AI.</span></h1>
+    <p class="hero-role" id="hero-role"></p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="cv.html">View CV →</a>
+      <a class="btn" href="shaidan-shaari-cv.pdf" download>Download PDF ↓</a>
+      <a class="btn" id="hero-linkedin" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" id="hero-github" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="hero-meta">
+      <span><b>Location</b> <span id="hero-loc"></span></span>
+      <span><b>Company</b> NusaByte IT Solutions</span>
+      <span><b>Status</b> Open to remote · hybrid · Klang Valley</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="stats" id="stats"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">01 / ABOUT</p>
+      <h2>The operational half of AI</h2>
+      <p class="sec-sub">Most AI work stops at the demo. I'm interested in the part after — what happens when the provider degrades, who approved that message, what it costs at 10× volume, and how it rolls back.</p>
+    </div>
+    <div class="about-grid">
+      <div id="about-body"></div>
+      <div class="caps" id="caps"></div>
+    </div>
+  </div>
+</section>
+
+<section id="systems">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">02 / SYSTEMS</p>
+      <h2>Things I built and run</h2>
+      <p class="sec-sub">Each entry is problem → approach → what shipped → what broke. The breakage is the part most portfolios leave out, and it's the part that proves you were actually operating the thing.</p>
+    </div>
+    <div class="systems" id="systems-list"></div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">03 / EXPERIENCE</p>
+      <h2>Ten years, ten roles</h2>
+      <p class="sec-sub">Helpdesk → server room → e-commerce → agent systems. The arc is the asset: it's the reason I can talk about blast radius and rollback strategy instead of only about models.</p>
+    </div>
+    <div class="exp" id="exp-list"></div>
+    <div style="margin-top:34px;padding-top:22px;border-top:1px solid var(--border);">
+      <p class="sec-num" style="margin-bottom:14px;">TRAINING</p>
+      <div id="training-list" style="display:flex;flex-direction:column;gap:16px;"></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">04 / SKILLS</p>
+      <h2>The stack</h2>
+    </div>
+    <div class="skill-grid" id="skill-grid"></div>
+  </div>
+</section>
+
+<section id="credentials">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">05 / CREDENTIALS</p>
+      <h2>Education &amp; certifications</h2>
+    </div>
+    <div class="creds">
+      <div class="cred-card">
+        <h3>Education</h3>
+        <div id="edu-list"></div>
+      </div>
+      <div class="cred-card">
+        <h3>Certifications</h3>
+        <div id="cert-list"></div>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border);">
+          <h3>Languages</h3>
+          <div id="lang-list" style="font:400 13px var(--body);color:#bcc3cf;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <p class="sec-num">06 / CONTACT</p>
+    <h2>Let's talk</h2>
+    <p class="sec-sub" style="margin:0 auto;">Agentic AI or AI automation work where the operational half is taken seriously.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" id="cta-email" href="#">Email</a>
+      <a class="btn" id="cta-linkedin" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" id="cta-github" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" id="cta-nusabyte" target="_blank" rel="noopener">nusabyte.my</a>
+      <a class="btn" id="cta-jebat" target="_blank" rel="noopener">jebat.online</a>
+      <a class="btn" href="shaidan-shaari-cv.pdf" download>CV (PDF)</a>
+    </div>
+    <div class="contact-lines">
+      <span id="contact-email"></span>
+      <span id="contact-phone"></span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;width:100%;">
+    <span>© 2026 Shaidan Shaari Bin Abd Rasep · NusaByte IT Solutions (SSM 202603010679)</span>
+    <span>KEEP COMMAND.</span>
+  </div>
+</footer>
+
+<script>
+// Content comes from resume.json so the site and the CV share one source.
+// The template renders it; nothing here is hardcoded that belongs in the data.
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+fetch("resume.json")
+  .then((r) => {
+    if (!r.ok) throw new Error("resume.json " + r.status);
+    return r.json();
+  })
+  .then((d) => {
+    document.title = `${d.shortName} — ${d.role}`;
+    $("hero-role").textContent = d.role + ". Founder of " + d.company.name + ".";
+    $("hero-loc").textContent = d.location;
+    $("hero-linkedin").href = d.links.linkedin;
+    $("hero-github").href = d.links.github;
+
+    $("stats").innerHTML = d.stats.map((s) => `
+      <div class="stat">
+        <div class="stat-value">${esc(s.value)}</div>
+        <div class="stat-label">${esc(s.label)}</div>
+        <div class="stat-detail">${esc(s.detail)}</div>
+      </div>`).join("");
+
+    $("about-body").innerHTML = d.summary.map((p) => `<p>${esc(p)}</p>`).join("");
+
+    $("caps").innerHTML = d.capabilities.map((c) => `
+      <div class="cap">
+        <p class="cap-title">${esc(c.title)}</p>
+        <p class="cap-body">${esc(c.body)}</p>
+      </div>`).join("");
+
+    $("systems-list").innerHTML = d.systems.map((s) => `
+      <article class="system">
+        <div class="system-top">
+          <div>
+            <h3 class="system-name">${esc(s.name)}</h3>
+            <p class="system-kind">${esc(s.kind)}</p>
+          </div>
+          <span class="system-year">${esc(s.year)}</span>
+        </div>
+        <div class="sys-block"><p class="sys-key">Problem</p><p class="sys-body">${esc(s.problem)}</p></div>
+        <div class="sys-block"><p class="sys-key">Approach</p><p class="sys-body">${esc(s.approach)}</p></div>
+        <div class="sys-block"><p class="sys-key">Shipped</p><p class="sys-body">${esc(s.shipped)}</p></div>
+        <div class="sys-block broke"><p class="sys-key">Broke</p><p class="sys-body">${esc(s.broke)}</p></div>
+        <div class="chips">${s.stack.map((t) => `<span class="chip">${esc(t)}</span>`).join("")}</div>
+      </article>`).join("");
+
+    $("exp-list").innerHTML = d.experience.map((e) => `
+      <div class="exp-row">
+        <div>
+          <div class="exp-period">${esc(e.period)}</div>
+          <div class="exp-place">${esc(e.place)}</div>
+        </div>
+        <div>
+          <h3 class="exp-role">${esc(e.role)}</h3>
+          <p class="exp-company">${esc(e.company)}</p>
+          ${e.summary ? `<p class="exp-summary">${esc(e.summary)}</p>` : ""}
+          <ul>${e.bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
+        </div>
+      </div>`).join("");
+
+    $("training-list").innerHTML = d.training.map((t) => `
+      <div>
+        <div class="exp-period">${esc(t.period)}</div>
+        <h3 class="exp-role" style="font-size:15px;">${esc(t.role)} — ${esc(t.company)}</h3>
+        <p class="sys-body">${esc(t.detail)}</p>
+      </div>`).join("");
+
+    $("skill-grid").innerHTML = d.skills.map((g) => `
+      <div class="skill-group">
+        <h3>${esc(g.group)}</h3>
+        <div class="skill-items">${g.items.map((i) => `<span>${esc(i)}</span>`).join("")}</div>
+      </div>`).join("");
+
+    $("edu-list").innerHTML = d.education.map((e) => `
+      <div class="cred-item">
+        <div class="cred-title">${esc(e.degree)}</div>
+        <div class="cred-sub">${esc(e.school)}</div>
+        <div class="cred-sub">${esc(e.period)}${e.note ? " · " + esc(e.note) : ""}</div>
+      </div>`).join("");
+
+    $("cert-list").innerHTML = d.certifications.map((c) => `<div class="cert">${esc(c)}</div>`).join("");
+    $("lang-list").textContent = d.languages.join(" · ");
+
+    $("cta-email").href = "mailto:" + d.email;
+    $("cta-linkedin").href = d.links.linkedin;
+    $("cta-github").href = d.links.github;
+    $("cta-nusabyte").href = d.links.nusabyte;
+    $("cta-jebat").href = d.links.jebat;
+    $("contact-email").textContent = d.email;
+    $("contact-phone").textContent = d.phone;
+  })
+  .catch((err) => {
+    // Loud failure, not a blank page. The site is useless without its data.
+    document.body.insertAdjacentHTML("afterbegin",
+      `<div style="background:#3b1114;border-bottom:1px solid #7f1d1d;color:#fca5a5;
+        font:500 13px ui-monospace,monospace;padding:14px 20px;">
+        Failed to load resume.json — ${esc(err.message)}
+      </div>`);
+  });
+</script>
+
+</body>
+</html>

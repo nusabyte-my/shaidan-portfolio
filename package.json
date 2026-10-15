@@ -1,0 +1,10 @@
+{
+  "name": "shaidan-portfolio",
+  "private": false,
+  "description": "Portfolio and online CV — Shaidan Shaari. Infrastructure & Security Engineer turned AI Systems Builder.",
+  "homepage": "https://nusabyte-my.github.io/shaidan-portfolio/",
+  "license": "UNLICENSED",
+  "scripts": {
+    "serve": "python -m http.server 8080"
+  }
+}
