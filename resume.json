@@ -1,7 +1,7 @@
 {
   "name": "Shaidan Shaari Bin Abd Rasep",
   "shortName": "Shaidan Shaari",
-  "role": "Infrastructure & Security Engineer turned AI Systems Builder",
+  "role": "IT Infrastructure Specialist & AI Solutions Builder",
   "location": "Petaling Jaya, Selangor, Malaysia",
   "email": "shaidanshaari@gmail.com",
   "phone": "+6011 7016 2506",
@@ -12,8 +12,8 @@
     "jebat": "https://jebat.online"
   },
   "summary": [
-    "I started in the server room. Ten-plus years ago that was AIX boxes, Cisco switches and VLANs at IBM Malaysia: 50+ servers, 99.9% uptime, and the humility that comes from being on call when a box stops answering. Then a co-founded e-commerce business doing RM 500K a year, where the same discipline met marketing budgets and 4:1 ad ROI.",
-    "Now I build AI systems and still operate the infrastructure underneath them. That is the part most AI work skips. A decade accountable for uptime changes how you build: you think about blast radius, rollback strategy, and why an approval gate exists before the automation does something you cannot undo."
+    "I began in enterprise IT operations, supporting IBM AIX, IBM Power Systems, Linux, HMC/VIOS, and Cisco networks. I bring more than a decade of experience in infrastructure support, troubleshooting, service delivery, and keeping business systems dependable.",
+    "Today, through NusaByte, I build full-stack products and AI-enabled workflows with the same focus on security, operational clarity, and human oversight. JEBAT.online is my flagship project: a self-hosted AI agent workstation with developer CLI workflows, persistent memory, and multi-provider model support. I also developed WiraSiber Academy, winner of the Exabytes Malaysia Web Award 2025 Personal Category (Web Excellence Award)."
   ],
   "stats": [
     {
@@ -403,22 +403,23 @@
   },
   "projects": [
     {
-      "name": "JEBAT CENTRIX",
-      "blurb": "Nineteen specialist agents behind one interface. Natural-language routing to named specialists, parallel fan-out across independent workstreams, and mandatory approval on anything outbound or destructive. Multi-provider LLM routing with automatic failover.",
+      "name": "JEBAT.online | AI Agent Workstation",
+      "blurb": "Flagship project: self-hosted AI agent workstation with a developer CLI for chat, code generation and task execution; persistent project memory and resumable sessions; multi-provider model routing with local Ollama support; workspace-aware context capture; and documented MCP integration for the full JEBAT workspace.",
       "domain": "AI",
       "stack": [
         "Python",
-        "FastAPI",
-        "PostgreSQL",
-        "Redis",
-        "WebSockets",
+        "Node.js / npm",
+        "TypeScript SDK",
         "MCP",
-        "Docker"
+        "Ollama",
+        "OpenAI-compatible APIs"
       ],
       "state": "Live",
       "year": "2026",
       "flag": true,
-      "shot": "shots/jebat-online-hero.jpg"
+      "shot": "shots/jebat-online-hero.jpg",
+      "url": "https://jebat.online",
+      "github": "https://github.com/nusabyte-my/jebat-core"
     },
     {
       "name": "WhatsApp sales desk",
@@ -487,20 +488,22 @@
       "shot": null
     },
     {
-      "name": "SME OS",
-      "blurb": "Owner workspace for small businesses. React 19 front end, FastAPI backend. Covers what an SME needs without buying six subscriptions.",
+      "name": "SME Toolkit | Owner Business Workspace",
+      "blurb": "Business-owner workspace for recorded sales and CRM, quotations and invoices, bookkeeping, HR, marketing planning and reviewable agent recommendations. Actions with external consequences stay owner-approved.",
       "domain": "Commerce",
       "stack": [
         "React 19",
-        "Vite",
-        "Tailwind",
         "TypeScript",
+        "Vite",
+        "Tailwind CSS",
         "FastAPI",
-        "Vitest"
+        "SQLAlchemy",
+        "LangGraph"
       ],
       "state": "Active",
       "year": "2026",
-      "shot": null
+      "shot": null,
+      "github": "https://github.com/nusabyte-my/sme-toolkit"
     },
     {
       "name": "evolvepayboost-web",
@@ -594,32 +597,41 @@
       "shot": null
     },
     {
-      "name": "wirasiber-academy",
-      "blurb": "Cybersecurity training as an online RPG. Players work through attack and defence scenarios that map to real certification objectives.",
+      "name": "WiraSiber Academy",
+      "blurb": "Browser-based cybersecurity learning platform with simulated terminal practice, missions, learning tracks and offline PWA support. Winner of the Exabytes Malaysia Web Award 2025, Personal Category (Web Excellence Award).",
       "domain": "Security",
       "stack": [
         "React",
         "Vite",
-        "Tailwind",
         "TypeScript",
-        "Express"
+        "Express",
+        "PostgreSQL",
+        "Redis",
+        "PWA",
+        "LLM APIs"
       ],
       "state": "Live",
       "year": "2026",
-      "shot": null
+      "shot": null,
+      "url": "https://wirasiber.my",
+      "github": "https://github.com/nusabyte-my/wirasiber-academy"
     },
     {
-      "name": "ThreatWatch-AI",
-      "blurb": "Browser extension that flags malicious destinations before they load, backed by production threat endpoints.",
+      "name": "ThreatWatch AI",
+      "blurb": "Threat-operations prototype for analysing suspicious messages, URLs and email files with rules, machine-learning detection and optional AI. Includes an investigation workspace, explainable evidence and timelines, analyst copilot, dashboard and printable incident brief.",
       "domain": "Security",
       "stack": [
-        "JavaScript",
-        "Browser Extension",
-        "Threat Intel API"
+        "FastAPI",
+        "PostgreSQL",
+        "Vanilla JavaScript",
+        "Docker Compose",
+        "Ollama / Gemma",
+        "BYOK model APIs"
       ],
-      "state": "Live",
+      "state": "Prototype",
       "year": "2026",
-      "shot": null
+      "shot": null,
+      "github": "https://github.com/nusabyte-my/ThreatWatch-AI"
     },
     {
       "name": "kawal-ai",
@@ -644,19 +656,6 @@
         "rizin",
         "Frida",
         "Docker"
-      ],
-      "state": "Live",
-      "year": "2026",
-      "shot": null
-    },
-    {
-      "name": "redteam-ctf",
-      "blurb": "CTF platform with challenge delivery, flag validation, and scoring.",
-      "domain": "Security",
-      "stack": [
-        "TypeScript",
-        "Zod",
-        "React"
       ],
       "state": "Live",
       "year": "2026",
@@ -726,6 +725,70 @@
       "state": "Shipped",
       "year": "2017–2026",
       "shot": null
+    },
+    {
+      "name": "KutipCrew | Split Bill Tracker",
+      "blurb": "Group bill creation and shareable payment pages, payment-progress tracking, QR payment details, AI-assisted reminder chat and mini-game interactions.",
+      "domain": "Commerce",
+      "stack": [
+        "Bun",
+        "Hono",
+        "PostgreSQL",
+        "React 19",
+        "Vite",
+        "TypeScript",
+        "Tailwind CSS",
+        "Groq API",
+        "WebSockets"
+      ],
+      "state": "Live",
+      "year": "2026",
+      "url": "https://kutipcrew.nusabyte.cloud",
+      "github": "https://github.com/nusabyte-my/kutipcrew"
+    },
+    {
+      "name": "GuardianBox | ACE 2026 Mini Hackathon",
+      "blurb": "Team TokenTitans edge-AI elder-care prototype exploring local fall-risk monitoring and emergency escalation. The concept considers cultural context when distinguishing prayer postures from possible falls.",
+      "domain": "AI",
+      "stack": [
+        "Python",
+        "PyTorch",
+        "OpenCV",
+        "FastAPI",
+        "NVIDIA DGX Spark",
+        "NVIDIA Nemotron"
+      ],
+      "state": "Hackathon prototype",
+      "year": "2026",
+      "github": "https://github.com/nusabyte-my/tokentitans-hackathon"
+    },
+    {
+      "name": "Shaidan Portfolio | Online CV",
+      "blurb": "Personal online CV and project showcase with domain filters, interactive terminal commands, experience and skills views, and a single JSON source for portfolio content.",
+      "domain": "Platform",
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "JSON",
+        "GitHub Pages"
+      ],
+      "state": "Live",
+      "year": "2026",
+      "url": "https://nusabyte-my.github.io/shaidan-portfolio/",
+      "github": "https://github.com/nusabyte-my/shaidan-portfolio"
+    },
+    {
+      "name": "LYT Bank | Public Repository",
+      "blurb": "The GitHub repository is public but currently empty; no implementation scope or technology stack is documented.",
+      "domain": "Platform",
+      "stack": [],
+      "state": "Empty repository",
+      "year": "2026",
+      "github": "https://github.com/nusabyte-my/lyt-bank"
     }
+  ],
+  "awards": [
+    "Exabytes Malaysia Web Award 2025 — Personal Category, Web Excellence Award — WiraSiber Academy (wirasiber.my)"
   ]
 }
