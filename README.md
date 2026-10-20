@@ -11,7 +11,7 @@ Live: https://nusabyte-my.github.io/shaidan-portfolio/
 |---|---|
 | `index.html` | The site. One file, no build step, no framework. |
 | `cv.html` | Print-ready A4 CV. Open → Ctrl+P → Save as PDF. |
-| `shaidan-shaari-cv.pdf` | The same CV as a PDF. |
+| `shaidan-shaari-cv.pdf` | Earlier PDF export; use `cv.html` for the current print-ready CV. |
 | `resume.json` | Single source of truth — every section renders from this. |
 | `dns/README.md` | A records for the shaidan.nusabyte.my custom domain. |
 
