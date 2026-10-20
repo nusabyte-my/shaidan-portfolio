@@ -786,6 +786,26 @@
       "state": "Empty repository",
       "year": "2026",
       "github": "https://github.com/nusabyte-my/lyt-bank"
+    },
+    {
+      "name": "Richkey | Creative Academy Learning Platform",
+      "blurb": "Learning platform for a creative academy. Student workflows cover course discovery, enrolment, learning progress and certificates; instructor tools support course delivery and learner communication; admin tools cover courses, students, analytics, clients and invoicing. Includes event, poster and gallery management.",
+      "domain": "Product",
+      "stack": [
+        "React 19",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Wouter",
+        "Hono",
+        "Cloudflare Workers",
+        "Cloudflare D1",
+        "Cloudflare R2",
+        "Drizzle ORM"
+      ],
+      "state": "Client project",
+      "year": "2026",
+      "shot": null
     }
   ],
   "awards": [
