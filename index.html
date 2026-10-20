@@ -627,7 +627,8 @@ function renderSkills(d) {
 
 function renderCreds(d) {
   $("edu-list").innerHTML = d.education.map((e) => `<div class="cred-item"><div class="cred-title">${esc(e.degree)}</div><div class="cred-sub">${esc(e.school)}</div><div class="cred-sub">${esc(e.period)}${e.note ? " · " + esc(e.note) : ""}</div></div>`).join("");
-  $("cert-list").innerHTML = d.certifications.map((c) => `<div class="cert">${esc(c)}</div>`).join("");\n  $("awards-list").innerHTML = (d.awards || []).map((a) => `<div class="cert">${esc(a)}</div>`).join("");
+  $("cert-list").innerHTML = d.certifications.map((c) => `<div class="cert">${esc(c)}</div>`).join("");
+  $("awards-list").innerHTML = (d.awards || []).map((a) => `<div class="cert">${esc(a)}</div>`).join("");
   $("lang-list").textContent = d.languages.join(" · ");
 }
 
